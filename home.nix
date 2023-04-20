@@ -8,10 +8,20 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    bash
+    bat
+    ffmpeg
+    git
     htop
     neovim
-    ffmpeg
     nnn
-    git
+    zellij
   ];
+
+  programs.bash.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    FOO = "BAR";
+  };
 }
