@@ -10,11 +10,16 @@
   home.packages = with pkgs; [
     bash
     bat
+    calibre
     ffmpeg
+    firefox
     git
     htop
+    kitty
+    less
     neovim
     nnn
+    xournalpp
     zellij
   ];
 
@@ -22,6 +27,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    PAGER = "less";
     FOO = "BAR";
   };
 }
