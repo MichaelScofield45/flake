@@ -51,6 +51,14 @@
   programs.starship.enable = true;
   programs.zoxide.enable = true;
 
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "tokyo-night";
+      vim_keys = true;
+    };
+  };
+
   programs.mpv = {
     enable = true;
     config = {
