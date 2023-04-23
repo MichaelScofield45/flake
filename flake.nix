@@ -19,7 +19,10 @@
       overlays = 
         let
           moz-rev = "master";
-          moz-url = builtins.fetchTarball { url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";};
+          moz-url = builtins.fetchTarball { 
+            url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";
+            sha256 = "0k3jxk21s28jsfpmqv39vyhfz2srfm81kp4xnpzgsbjn77rhwn03";
+          };
           nightlyOverlay = (import "${moz-url}/firefox-overlay.nix");
         in
           [
@@ -28,6 +31,7 @@
     in {
       nixosConfigurations = {
         ms45 = lib.nixosSystem {
+	  inherit pkgs;
           inherit system;
           modules = [ 
             ./configuration.nix 

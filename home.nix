@@ -13,7 +13,6 @@
     bat
     calibre
     ffmpeg
-    firefox
     git
     htop
     jetbrains-mono
