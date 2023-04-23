@@ -15,12 +15,14 @@
     firefox
     git
     htop
+    jetbrains-mono
     kitty
     less
     neovim
     nnn
     xournalpp
     zellij
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   programs.bash.enable = true;
@@ -32,4 +34,7 @@
   };
 
   services.syncthing.enable = true;
+
+  fonts.fontconfig.enable = true;
+
 }
