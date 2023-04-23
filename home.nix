@@ -30,4 +30,6 @@
     PAGER = "less";
     FOO = "BAR";
   };
+
+  services.syncthing.enable = true;
 }
