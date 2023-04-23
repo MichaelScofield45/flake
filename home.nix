@@ -21,6 +21,7 @@
     less
     neovim
     nnn
+    qbittorrent
     wl-clipboard
     xclip
     xournalpp

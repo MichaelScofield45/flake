@@ -20,14 +20,14 @@
         ms45 = lib.nixosSystem {
           inherit system;
           modules = [ 
-           ./configuration.nix 
-           home-manager.nixosModules.home-manager {
-             home-manager.useGlobalPkgs = true;
-             home-manager.useUserPackages = true;
-             home-manager.users.ms45 = {
-               imports = [ ./home.nix ];
-             };
-           }
+            ./configuration.nix 
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.ms45 = {
+                imports = [ ./home.nix ];
+              };
+            }
           ];
         };
       };
