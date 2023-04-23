@@ -18,6 +18,7 @@
     htop
     jetbrains-mono
     kitty
+    latest.firefox-nightly-bin
     less
     neovim
     nnn
