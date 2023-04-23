@@ -21,6 +21,7 @@
     less
     neovim
     nnn
+    obs-studio
     qbittorrent
     wl-clipboard
     xclip
