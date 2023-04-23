@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     bash
     bat
     calibre
@@ -20,12 +21,11 @@
     less
     neovim
     nnn
+    wl-clipboard
+    xclip
     xournalpp
     zellij
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
-
-  programs.bash.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -37,4 +37,24 @@
 
   fonts.fontconfig.enable = true;
 
+  programs.bash.enable = true;
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+      fish_vi_key_bindings
+    '';
+  };
+
+  programs.starship.enable = true;
+  programs.zoxide.enable = true;
+
+  programs.mpv = {
+    enable = true;
+    config = {
+      hwdec = "auto";
+      vo = "gpu";
+    };
+  };
 }
