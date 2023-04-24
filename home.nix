@@ -23,6 +23,7 @@
     nnn
     obs-studio
     qbittorrent
+    tealdeer
     wl-clipboard
     xclip
     xournalpp
