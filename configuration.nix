@@ -17,6 +17,8 @@ in
       ./hardware-configuration.nix
     ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -67,8 +69,11 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.xpadneo.enable = true;
+
   # Enable sound.
-  sound.enable = true;
+  # sound.enable = true;
   # hardware.pulseaudio.enable = true;
   # services.pipewire.enable = true;
   # services.pipewire.audio.enable = true;
@@ -78,6 +83,38 @@ in
     enable = true;
     audio.enable = true;
     pulse.enable = true;
+  };
+
+  services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
+
+  # networking.firewall.allowedTCPPorts = [
+  #   5357 # wsdd
+  # ];
+
+  # networking.firewall.allowedUDPPorts = [
+  #   3702 # wsdd
+  # ];
+
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    extraConfig = ''
+    # server role = standalone server
+    # hosts allow = 192.168.0.0/16 localhost
+    usershare allow guests = yes
+    '';
+    shares.Media = {
+      path = "/home/ms45/Media";
+      writeable = "yes";
+      browseable = "yes";
+      "read only" = "no";
+      "guest ok" = "yes";
+      # "directory mask" = "0755";
+      # "force create mod" = "0755";
+    };
+    shares.global = {
+      "server min protocol" = "SMB2_02";
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -102,6 +139,7 @@ in
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    # smbclient
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
