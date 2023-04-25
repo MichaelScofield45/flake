@@ -87,33 +87,37 @@ in
 
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
 
-  # networking.firewall.allowedTCPPorts = [
-  #   5357 # wsdd
-  # ];
+  networking.firewall.allowedTCPPorts = [
+    5357 # wsdd
+    445
+  ];
 
-  # networking.firewall.allowedUDPPorts = [
-  #   3702 # wsdd
-  # ];
+  networking.firewall.allowedUDPPorts = [
+    3702 # wsdd
+  ];
 
   services.samba = {
     enable = true;
     securityType = "user";
     extraConfig = ''
-    # server role = standalone server
-    # hosts allow = 192.168.0.0/16 localhost
-    usershare allow guests = yes
+    server string = File Server
+    map to guest = bad user
+    # usershare allow guests = yes
+    name resolve order = bcast host
     '';
     shares.Media = {
       path = "/home/ms45/Media";
       writeable = "yes";
       browseable = "yes";
+      "public" = "yes";
       "read only" = "no";
       "guest ok" = "yes";
-      # "directory mask" = "0755";
-      # "force create mod" = "0755";
-    };
-    shares.global = {
-      "server min protocol" = "SMB2_02";
+      # "force user" = "nobody";
+      # "force user" = "smbuser";
+      # "force group" = "smbgroup";
+      "create mask" = "0664";
+      "directory mask" = "0775";
+      "force create mode" = "0664";
     };
   };
 
@@ -127,11 +131,18 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    initialPassword = "admin";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
     ];
     shell = pkgs.fish;
+  };
+
+  # Define a samba share account and user group
+  users.groups.smbgroup = {};
+  users.users.smbuser = {
+    isSystemUser = true;
+    shell = pkgs.shadow;
+    group = "smbgroup";
   };
 
   # List packages installed in system profile. To search, run:
