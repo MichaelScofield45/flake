@@ -6,7 +6,7 @@
 
 
 let
-  user="ms45";
+  user = "ms45";
 in
 {
   nixpkgs.config.allowUnfree = true;
