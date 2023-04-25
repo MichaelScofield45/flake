@@ -119,6 +119,17 @@ in
       "directory mask" = "0775";
       "force create mode" = "0664";
     };
+    shares.Data = {
+      path = "/home/ms45/Data";
+      writeable = "yes";
+      browseable = "yes";
+      "public" = "yes";
+      "read only" = "no";
+      "guest ok" = "yes";
+      "create mask" = "0664";
+      "directory mask" = "0775";
+      "force create mode" = "0664";
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
