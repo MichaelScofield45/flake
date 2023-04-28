@@ -9,7 +9,8 @@ let
   user = "ms45";
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  # Already declared in flake
+  # nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
@@ -83,6 +84,8 @@ in
     enable = true;
     audio.enable = true;
     pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
   };
 
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
@@ -138,30 +141,30 @@ in
   # Define login shell
   programs.fish.enable = true;
 
+  # Enable dconf for easyeffects
+  programs.dconf.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.fish;
   };
 
   # Define a samba share account and user group
-  users.groups.smbgroup = {};
-  users.users.smbuser = {
-    isSystemUser = true;
-    shell = pkgs.shadow;
-    group = "smbgroup";
-  };
+  # users.groups.smbgroup = {};
+  # users.users.smbuser = {
+  #   isSystemUser = true;
+  #   shell = pkgs.shadow;
+  #   group = "smbgroup";
+  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    # smbclient
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
