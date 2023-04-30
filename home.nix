@@ -19,16 +19,18 @@
     jetbrains-mono
     kitty
     less
+    lutris
     neovim
     nnn
     obs-studio
     openssh
+    protonup-qt
     qbittorrent
     tealdeer
+    wineWowPackages.staging
     wl-clipboard
     xclip
     xournalpp
-    rnote
   ];
 
   home.sessionVariables = {
