@@ -72,6 +72,7 @@ in
 
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
+  # services.xserver.wacom.enable = true;
 
   # Enable sound.
   # sound.enable = true;
@@ -87,6 +88,8 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
   };
+
+  services.jackett.enable = true;
 
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
 
