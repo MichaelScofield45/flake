@@ -4,7 +4,6 @@
 
 { config, pkgs, ... }:
 
-
 let
   user = "ms45";
 in
@@ -13,10 +12,9 @@ in
   # nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -72,7 +70,6 @@ in
 
   hardware.bluetooth.enable = true;
   hardware.xpadneo.enable = true;
-  # services.xserver.wacom.enable = true;
 
   # Enable sound.
   # sound.enable = true;
@@ -101,6 +98,9 @@ in
   networking.firewall.allowedUDPPorts = [
     3702 # wsdd
   ];
+
+  virtualisation.docker.enable = true;
+  services.jellyfin.enable = true;
 
   services.samba = {
     enable = true;
@@ -137,9 +137,6 @@ in
       "force create mode" = "0664";
     };
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define login shell
   programs.fish.enable = true;
