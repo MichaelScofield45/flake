@@ -12,6 +12,7 @@
     bash
     bat
     calibre
+    fd
     ffmpeg
     firefox-beta-bin
     git

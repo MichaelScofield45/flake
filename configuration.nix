@@ -93,10 +93,12 @@ in
   networking.firewall.allowedTCPPorts = [
     5357 # wsdd
     445
+    8096
   ];
 
   networking.firewall.allowedUDPPorts = [
     3702 # wsdd
+    8096
   ];
 
   virtualisation.docker.enable = true;
