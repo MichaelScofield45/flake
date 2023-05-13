@@ -15,11 +15,13 @@
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
+      user = "ms45";
     in {
       nixosConfigurations = {
-        ms45 = lib.nixosSystem {
+        ${user} = lib.nixosSystem {
 	      inherit pkgs;
           inherit system;
+          specialArgs = { inherit user; };
           modules = [ 
             ./configuration.nix 
             home-manager.nixosModules.home-manager {

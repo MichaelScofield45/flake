@@ -8,27 +8,32 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # Terminal related pkgs
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     bash
     bat
-    calibre
     fd
     ffmpeg
-    firefox-beta-bin
     git
     htop
     jetbrains-mono
-    kitty
     less
-    lutris
     neovim
     nnn
-    obs-studio
-    openssh
-    protonup-qt
-    qbittorrent
     ripgrep
     tealdeer
+
+    # Services
+    openssh
+
+    # GUI apps
+    calibre
+    firefox-beta-bin
+    kitty
+    lutris
+    obs-studio
+    protonup-qt
+    qbittorrent
     wineWowPackages.staging
     wl-clipboard
     xclip
