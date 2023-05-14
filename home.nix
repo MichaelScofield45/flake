@@ -137,6 +137,31 @@
     };
   };
 
+  programs.kitty = {
+    enable = true;
+    theme = "Tokyo Night";
+    font = {
+      name = "JetBrains Mono";
+      size = 12.0;
+    };
+    settings = {
+      window_padding_width = "0 5 0 5";
+    };
+  };
+
+  programs.wezterm = {
+    enable = true;
+    extraConfig = ''
+      return {
+        front_end = "WebGpu",
+        font = wezterm.font("JetBrains Mono"),
+        font_size = 12.0,
+        color_scheme = "Tokyo Night (Gogh)",
+        hide_tab_bar_if_only_one_tab = true
+      }
+    '';
+  };
+
   services.easyeffects = {
     enable = true;
     preset = "Default";
