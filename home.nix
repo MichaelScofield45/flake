@@ -147,6 +147,7 @@
     };
     settings = {
       window_padding_width = "0 5 0 5";
+      enable_audio_bell = false;
     };
   };
 
