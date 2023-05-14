@@ -57,6 +57,7 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
+      set -Ux NNN_FCOLORS "c1e2272e006033f7c6d6abc4" # Set nnn colors for filetypes
     '';
     functions = {
       n = {
