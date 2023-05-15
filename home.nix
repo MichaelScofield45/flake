@@ -172,4 +172,6 @@
     enable = true;
     preset = "Default";
   };
+
+  services.kdeconnect.enable = true;
 }
