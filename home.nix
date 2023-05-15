@@ -18,7 +18,7 @@
     htop
     jetbrains-mono
     less
-    neovim
+    # neovim
     nnn
     ripgrep
     tealdeer
@@ -45,6 +45,10 @@
     PAGER = "less";
     FOO = "BAR";
   };
+
+  home.sessionPath = [
+    "$HOME/Software/neovim/bin"
+  ];
 
   services.syncthing.enable = true;
 
