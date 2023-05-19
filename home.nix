@@ -17,8 +17,9 @@
     git
     htop
     jetbrains-mono
+    lazygit
     less
-    # neovim
+    neovim
     nnn
     ripgrep
     tealdeer
@@ -27,6 +28,7 @@
     openssh
 
     # GUI apps
+    blender
     calibre
     firefox-beta-bin
     kitty
@@ -46,9 +48,7 @@
     FOO = "BAR";
   };
 
-  home.sessionPath = [
-    "$HOME/Software/neovim/bin"
-  ];
+  home.sessionPath = [ ];
 
   services.syncthing.enable = true;
 
