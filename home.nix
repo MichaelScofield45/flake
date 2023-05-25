@@ -114,6 +114,20 @@
     };
   };
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "tokyonight";
+      editor = {
+        line-number = "relative";
+        color-modes = true;
+      };
+      keys.insert = {
+        "C-[" = "normal_mode";
+      };
+    };
+  };
+
   programs.zellij = {
     enable = true;
     settings = {
