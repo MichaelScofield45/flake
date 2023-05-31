@@ -94,11 +94,15 @@
     5357 # wsdd
     445
     8096
+    8384 # syncthing
+    22000 # syncthing
   ];
 
   networking.firewall.allowedUDPPorts = [
     3702 # wsdd
     8096
+    22000 # syncthing
+    21027 # syncthing
   ];
 
   virtualisation.docker.enable = true;
