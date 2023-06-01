@@ -36,6 +36,7 @@
     obs-studio
     protonup-qt
     qbittorrent
+    rnote
     wineWowPackages.staging
     wl-clipboard
     xclip
