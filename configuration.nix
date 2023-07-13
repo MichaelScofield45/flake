@@ -17,6 +17,7 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "amd_iommu=on" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -107,6 +108,7 @@
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
   services.jellyfin.enable = true;
 
   services.samba = {
@@ -154,10 +156,13 @@
   # Enable steam
   programs.steam.enable = true;
 
+  # Enable kdeconnect
+  programs.kdeconnect.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ ];
     shell = pkgs.fish;
   };
@@ -177,6 +182,7 @@
     gcc
     wget
     patchelf
+    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
