@@ -23,6 +23,7 @@
     nnn
     ripgrep
     tealdeer
+    trash-cli
 
     # Services
     openssh
@@ -30,6 +31,7 @@
     # GUI apps
     blender
     calibre
+    chromium
     firefox-beta-bin
     kitty
     lutris
@@ -169,6 +171,10 @@
     settings = {
       window_padding_width = "0 5 0 5";
       enable_audio_bell = false;
+    };
+    keybindings = {
+      "kitty_mod+t" = "launch --cwd=current --type=tab";
+      "kitty_mod+enter" = "launch --cwd=current --type=window";
     };
   };
 
