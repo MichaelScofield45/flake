@@ -19,7 +19,7 @@
     jetbrains-mono
     lazygit
     less
-    neovim
+    # neovim
     nnn
     ripgrep
     tealdeer
@@ -44,6 +44,8 @@
     xclip
     xournalpp
     yuzu-mainline
+    zathura # needs mupdf
+    # mupdf # needed by zathura
   ];
 
   home.sessionVariables = {
@@ -102,6 +104,24 @@
           if test -e $NNN_TMPFILE
               source $NNN_TMPFILE
               rm $NNN_TMPFILE
+          end
+        '';
+      };
+      s = {
+        wraps = "sea";
+        description = "support sea quit and change directory";
+        body = ''
+          if test -n "$XDG_CONFIG_HOME"
+              set -x SEA_TMPFILE "$XDG_CONFIG_HOME/sea/.lastd"
+          else
+              set -x SEA_TMPFILE "$HOME/.config/sea/.lastd"
+          end
+
+          command sea $argv
+
+          if test -e $SEA_TMPFILE
+              source $SEA_TMPFILE
+              rm $SEA_TMPFILE
           end
         '';
       };
