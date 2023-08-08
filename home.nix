@@ -10,7 +10,6 @@
   home.packages = with pkgs; [
     # Terminal related pkgs
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    bash
     bat
     fd
     ffmpeg
@@ -19,11 +18,13 @@
     jetbrains-mono
     lazygit
     less
-    # neovim
+    # neovim # handled via flake
     nnn
     ripgrep
     tealdeer
     trash-cli
+    file
+    gdb
 
     # Services
     openssh
@@ -36,16 +37,14 @@
     kitty
     lutris
     obs-studio
-    protonup-qt
     qbittorrent
     rnote
+    vscodium
     wineWowPackages.staging
     wl-clipboard
     xclip
     xournalpp
     yuzu-mainline
-    zathura # needs mupdf
-    # mupdf # needed by zathura
   ];
 
   home.sessionVariables = {
@@ -54,7 +53,9 @@
     FOO = "BAR";
   };
 
-  home.sessionPath = [ ];
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   services.syncthing.enable = true;
 
@@ -68,7 +69,6 @@
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
       set -Ux NNN_FCOLORS "c1e2272e006033f7c6d6abc4" # Set nnn colors for filetypes
-      fish_add_path ~/.local/bin
     '';
     functions = {
       n = {
@@ -215,6 +215,4 @@
     enable = true;
     preset = "Default";
   };
-
-  # services.kdeconnect.enable = true;
 }

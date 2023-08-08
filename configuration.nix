@@ -163,7 +163,7 @@
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
     shell = pkgs.fish;
   };
 
