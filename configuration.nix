@@ -3,14 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, user, ... }:
-
-# let
-#   user = "ms45";
-# in
 {
-  # Already declared in flake
-  # nixpkgs.config.allowUnfree = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports = [
     ./hardware-configuration.nix
@@ -75,11 +68,11 @@
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
   # services.pipewire.enable = true;
   # services.pipewire.audio.enable = true;
   # services.pipewire.pulse.enable = true;
 
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -167,14 +160,6 @@
     shell = pkgs.fish;
   };
 
-  # Define a samba share account and user group
-  # users.groups.smbgroup = {};
-  # users.users.smbuser = {
-  #   isSystemUser = true;
-  #   shell = pkgs.shadow;
-  #   group = "smbgroup";
-  # };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -196,7 +181,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

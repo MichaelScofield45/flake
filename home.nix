@@ -27,7 +27,7 @@
     gdb
 
     # Services
-    openssh
+    # openssh
 
     # GUI apps
     blender
