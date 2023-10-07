@@ -83,7 +83,7 @@
 
   services.jackett.enable = true;
 
-  services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
+  # services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
 
   networking.firewall.allowedTCPPorts = [
     5357 # wsdd
@@ -104,41 +104,41 @@
   virtualisation.libvirtd.enable = true;
   services.jellyfin.enable = true;
 
-  services.samba = {
-    enable = true;
-    securityType = "user";
-    extraConfig = ''
-    server string = File Server
-    map to guest = bad user
-    # usershare allow guests = yes
-    name resolve order = bcast host
-    '';
-    shares.Media = {
-      path = "/home/ms45/Media";
-      writeable = "yes";
-      browseable = "yes";
-      "public" = "yes";
-      "read only" = "no";
-      "guest ok" = "yes";
-      # "force user" = "nobody";
-      # "force user" = "smbuser";
-      # "force group" = "smbgroup";
-      "create mask" = "0664";
-      "directory mask" = "0775";
-      "force create mode" = "0664";
-    };
-    shares.Data = {
-      path = "/home/ms45/Data";
-      writeable = "yes";
-      browseable = "yes";
-      "public" = "yes";
-      "read only" = "no";
-      "guest ok" = "yes";
-      "create mask" = "0664";
-      "directory mask" = "0775";
-      "force create mode" = "0664";
-    };
-  };
+  # services.samba = {
+  #   enable = true;
+  #   securityType = "user";
+  #   extraConfig = ''
+  #   server string = File Server
+  #   map to guest = bad user
+  #   # usershare allow guests = yes
+  #   name resolve order = bcast host
+  #   '';
+  #   shares.Media = {
+  #     path = "/home/ms45/Media";
+  #     writeable = "yes";
+  #     browseable = "yes";
+  #     "public" = "yes";
+  #     "read only" = "no";
+  #     "guest ok" = "yes";
+  #     # "force user" = "nobody";
+  #     # "force user" = "smbuser";
+  #     # "force group" = "smbgroup";
+  #     "create mask" = "0664";
+  #     "directory mask" = "0775";
+  #     "force create mode" = "0664";
+  #   };
+  #   shares.Data = {
+  #     path = "/home/ms45/Data";
+  #     writeable = "yes";
+  #     browseable = "yes";
+  #     "public" = "yes";
+  #     "read only" = "no";
+  #     "guest ok" = "yes";
+  #     "create mask" = "0664";
+  #     "directory mask" = "0775";
+  #     "force create mode" = "0664";
+  #   };
+  # };
 
   # Define login shell
   programs.fish.enable = true;
