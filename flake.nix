@@ -14,7 +14,7 @@
         inherit system;
         config = {
           allowUnfree = true;
-          # cudaSupport = true;
+          cudaSupport = true;
         };
       };
       lib = nixpkgs.lib;

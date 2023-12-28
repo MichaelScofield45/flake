@@ -26,9 +26,6 @@
     file
     gdb
 
-    # Services
-    # openssh
-
     # GUI apps
     blender
     calibre
@@ -50,7 +47,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "less";
-    FOO = "BAR";
   };
 
   home.sessionPath = [
