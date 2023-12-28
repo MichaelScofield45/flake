@@ -21,6 +21,22 @@
       user = "ms45";
     in {
       nixosConfigurations = {
+        "${user}@laptop" = lib.nixosSystem {
+	      inherit pkgs;
+          inherit system;
+          specialArgs = { inherit user; };
+          modules = [
+            ./laptop/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = {
+                imports = [ ./home.nix ];
+              };
+            }
+          ];
+        };
+
         ${user} = lib.nixosSystem {
 	      inherit pkgs;
           inherit system;
@@ -30,7 +46,7 @@
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.ms45 = {
+              home-manager.users.${user} = {
                 imports = [ ./home.nix ];
               };
             }

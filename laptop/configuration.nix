@@ -10,7 +10,7 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "amd_iommu=on" ];
+  boot.kernelParams = [ "intel_iommu=on" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -40,10 +40,8 @@
   services.xserver.enable = true;
   services.xserver.libinput.enable = true;
 
-  # Nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # Hardware Acceleration
   hardware.opengl.enable = true;
-  hardware.nvidia.modesetting.enable = true;
 
 
   # Enable the GNOME Desktop Environment.
@@ -61,10 +59,10 @@
   # };
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   hardware.bluetooth.enable = true;
-  hardware.xpadneo.enable = true;
+  # hardware.xpadneo.enable = true;
 
   # Enable sound.
   # sound.enable = true;
@@ -81,12 +79,7 @@
     alsa.support32Bit = true;
   };
 
-  services.jackett.enable = true;
-
-  # services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
-
   networking.firewall.allowedTCPPorts = [
-    5357 # wsdd
     445
     8096
     8384 # syncthing
@@ -94,51 +87,10 @@
   ];
 
   networking.firewall.allowedUDPPorts = [
-    3702 # wsdd
     8096
     22000 # syncthing
     21027 # syncthing
   ];
-
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
-  services.jellyfin.enable = true;
-
-  # services.samba = {
-  #   enable = true;
-  #   securityType = "user";
-  #   extraConfig = ''
-  #   server string = File Server
-  #   map to guest = bad user
-  #   # usershare allow guests = yes
-  #   name resolve order = bcast host
-  #   '';
-  #   shares.Media = {
-  #     path = "/home/ms45/Media";
-  #     writeable = "yes";
-  #     browseable = "yes";
-  #     "public" = "yes";
-  #     "read only" = "no";
-  #     "guest ok" = "yes";
-  #     # "force user" = "nobody";
-  #     # "force user" = "smbuser";
-  #     # "force group" = "smbgroup";
-  #     "create mask" = "0664";
-  #     "directory mask" = "0775";
-  #     "force create mode" = "0664";
-  #   };
-  #   shares.Data = {
-  #     path = "/home/ms45/Data";
-  #     writeable = "yes";
-  #     browseable = "yes";
-  #     "public" = "yes";
-  #     "read only" = "no";
-  #     "guest ok" = "yes";
-  #     "create mask" = "0664";
-  #     "directory mask" = "0775";
-  #     "force create mode" = "0664";
-  #   };
-  # };
 
   # Define login shell
   programs.fish.enable = true;
@@ -155,7 +107,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
@@ -167,7 +119,6 @@
     gcc
     wget
     patchelf
-    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
