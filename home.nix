@@ -28,6 +28,7 @@
 
     # GUI apps
     blender
+    inkscape
     calibre
     chromium
     firefox-beta-bin
