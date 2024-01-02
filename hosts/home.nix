@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 {
   home.username = "ms45";
@@ -27,7 +27,7 @@
     gdb
 
     # GUI apps
-    blender
+    (blender.override { cudaSupport = true; })
     inkscape
     calibre
     chromium

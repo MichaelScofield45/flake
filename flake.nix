@@ -7,51 +7,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, ... }: 
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          cudaSupport = true;
-        };
-      };
-      lib = nixpkgs.lib;
       user = "ms45";
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
     in {
-      nixosConfigurations = {
-        "${user}@laptop" = lib.nixosSystem {
-	      inherit pkgs;
-          inherit system;
-          specialArgs = { inherit user; };
-          modules = [
-            ./laptop/configuration.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = {
-                imports = [ ./home.nix ];
-              };
-            }
-          ];
-        };
-
-        ${user} = lib.nixosSystem {
-	      inherit pkgs;
-          inherit system;
-          specialArgs = { inherit user; };
-          modules = [ 
-            ./configuration.nix 
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = {
-                imports = [ ./home.nix ];
-              };
-            }
-          ];
-        };
-      };
-    };
+      nixosConfigurations = (
+        import ./hosts {
+          inherit (nixpkgs) lib;
+          inherit inputs user system home-manager;
+        }
+      );
+  };
 }
