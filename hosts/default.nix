@@ -10,7 +10,7 @@
     };
   in lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit user inputs; };
+    specialArgs = { inherit user pkgs inputs; };
     modules = [
       ./desktop
       home-manager.nixosModules.home-manager {
@@ -35,7 +35,7 @@
     };
   in lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit user inputs; };
+    specialArgs = { inherit user pkgs inputs; };
     modules = [
       ./laptop
       home-manager.nixosModules.home-manager {
