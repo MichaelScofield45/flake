@@ -27,7 +27,7 @@
     gdb
 
     # GUI apps
-    (blender.override { cudaSupport = true; })
+    blender
     inkscape
     calibre
     chromium
