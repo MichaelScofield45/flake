@@ -5,6 +5,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvim_overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }: 

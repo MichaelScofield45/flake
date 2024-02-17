@@ -3,6 +3,7 @@
   desktop = let
     pkgs = import inputs.nixpkgs { 
       inherit system;
+      overlays = [ inputs.nvim_overlay.overlay ];
       config = {
         allowUnfree = true;
         cudaSupport = true;
@@ -29,6 +30,7 @@
   laptop = let
     pkgs = import inputs.nixpkgs { 
       inherit system;
+      overlays = [ inputs.nvim_overlay.overlay ];
       config = {
         allowUnfree = true;
       };

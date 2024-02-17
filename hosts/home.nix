@@ -18,7 +18,7 @@
     jetbrains-mono
     lazygit
     less
-    # neovim # handled via flake
+    neovim
     nnn
     ripgrep
     tealdeer
