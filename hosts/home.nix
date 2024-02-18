@@ -62,6 +62,9 @@
 
   programs.fish = {
     enable = true;
+    plugins = [
+      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+    ];
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
@@ -125,7 +128,6 @@
     };
   };
 
-  programs.starship.enable = true;
   programs.zoxide.enable = true;
 
   programs.btop = {
