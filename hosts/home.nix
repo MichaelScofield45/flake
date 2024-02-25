@@ -212,19 +212,6 @@
     };
   };
 
-  programs.wezterm = {
-    enable = true;
-    extraConfig = ''
-      return {
-        front_end = "WebGpu",
-        font = wezterm.font("JetBrains Mono"),
-        font_size = 12.0,
-        color_scheme = "Tokyo Night (Gogh)",
-        hide_tab_bar_if_only_one_tab = true
-      }
-    '';
-  };
-
   services.easyeffects = {
     enable = true;
     preset = "Default";
