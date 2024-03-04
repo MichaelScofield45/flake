@@ -13,18 +13,18 @@
     bat
     fd
     ffmpeg
+    file
+    gdb
     git
     htop
     jetbrains-mono
+    fira-code
     lazygit
     less
-    neovim
     nnn
     ripgrep
     tealdeer
     trash-cli
-    file
-    gdb
 
     # GUI apps
     blender
@@ -36,6 +36,7 @@
     lutris
     obs-studio
     qbittorrent
+    qalculate-qt
     rnote
     tridactyl-native
     vscodium
@@ -46,8 +47,14 @@
     yuzu-mainline
   ];
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  programs.zoxide.enable = true;
+
   home.sessionVariables = {
-    EDITOR = "nvim";
     PAGER = "less";
   };
 
@@ -83,7 +90,6 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
-      set -Ux NNN_FCOLORS "c1e2272e006033f7c6d6abc4" # Set nnn colors for filetypes
     '';
     functions = {
       n = {
@@ -122,68 +128,14 @@
           end
         '';
       };
-      s = {
-        wraps = "sea";
-        description = "support sea quit and change directory";
-        body = ''
-          if test -n "$XDG_CONFIG_HOME"
-              set -x SEA_TMPFILE "$XDG_CONFIG_HOME/sea/.lastd"
-          else
-              set -x SEA_TMPFILE "$HOME/.config/sea/.lastd"
-          end
-
-          command sea $argv
-
-          if test -e $SEA_TMPFILE
-              source $SEA_TMPFILE
-              rm $SEA_TMPFILE
-          end
-        '';
-      };
     };
   };
-
-  programs.zoxide.enable = true;
 
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "tokyo-night";
+      color_theme = "onedark";
       vim_keys = true;
-    };
-  };
-
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "tokyonight";
-      editor = {
-        line-number = "relative";
-        color-modes = true;
-      };
-      keys.insert = {
-        "C-[" = "normal_mode";
-      };
-    };
-  };
-
-  programs.zellij = {
-    enable = true;
-    settings = {
-      theme = "default";
-      themes.default = { # tokyonight-dark
-        fg = "#a9b1d6";
-        bg = "#1a1b26";
-        black = "#383e5a";
-        red = "#f93357";
-        green = "#9ece6a";
-        yellow = "#e0af68";
-        blue = "#7aa2f7";
-        magenta = "#bb9af7";
-        cyan = "#2ac3de";
-        white = "#c0caf5";
-        orange = "#ff9e64";
-      };
     };
   };
 
@@ -197,10 +149,10 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Tokyo Night";
+    theme = "Doom One";
     font = {
-      name = "JetBrains Mono";
-      size = 12.0;
+      name = "Fira Code";
+      size = 13.0;
     };
     settings = {
       window_padding_width = "0 5 0 5";
