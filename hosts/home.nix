@@ -18,7 +18,6 @@
     git
     htop
     jetbrains-mono
-    fira-code
     lazygit
     less
     nnn
@@ -44,7 +43,6 @@
     wl-clipboard
     xclip
     xournalpp
-    yuzu-mainline
   ];
 
   programs.neovim = {
@@ -151,7 +149,7 @@
     enable = true;
     theme = "Doom One";
     font = {
-      name = "Fira Code";
+      name = "JetBrains Mono";
       size = 13.0;
     };
     settings = {
