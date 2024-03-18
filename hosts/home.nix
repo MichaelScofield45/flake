@@ -6,7 +6,9 @@
   ...
 }: {
   imports = [
-    ../apps/blender.nix
+    ../programs/blender.nix
+    ../programs/kitty.nix
+    ../programs/fish.nix
   ];
 
   home.username = "ms45";
@@ -44,7 +46,6 @@
     qbittorrent
     qalculate-qt
     rnote
-    tridactyl-native
     vscodium
     wineWowPackages.staging
     wl-clipboard
@@ -87,58 +88,6 @@
 
   programs.bash.enable = true;
 
-  programs.fish = {
-    enable = true;
-    plugins = [
-      {
-        name = "tide";
-        src = pkgs.fishPlugins.tide.src;
-      }
-    ];
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-      fish_vi_key_bindings
-    '';
-    functions = {
-      n = {
-        wraps = "nnn";
-        description = "support nnn quit and change directory";
-        body = ''
-          # Block nesting of nnn in subshells
-          if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
-              echo "nnn is already running"
-              return
-          end
-
-          # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-          # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-          # see. To cd on quit only on ^G, remove the "-x" from both lines below,
-          # without changing the paths.
-          if test -n "$XDG_CONFIG_HOME"
-              set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
-          else
-              set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
-          end
-
-          # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-          # stty start undef
-          # stty stop undef
-          # stty lwrap undef
-          # stty lnext undef
-
-          # The command function allows one to alias this function to `nnn` without
-          # making an infinitely recursive alias
-          command nnn $argv
-
-          if test -e $NNN_TMPFILE
-              source $NNN_TMPFILE
-              rm $NNN_TMPFILE
-          end
-        '';
-      };
-    };
-  };
-
   programs.btop = {
     enable = true;
     settings = {
@@ -152,23 +101,6 @@
     config = {
       hwdec = "auto";
       vo = "gpu";
-    };
-  };
-
-  programs.kitty = {
-    enable = true;
-    theme = "Doom One";
-    font = {
-      name = "JetBrains Mono";
-      size = 13.0;
-    };
-    settings = {
-      window_padding_width = "0 5 0 5";
-      enable_audio_bell = false;
-    };
-    keybindings = {
-      "kitty_mod+t" = "launch --cwd=current --type=tab";
-      "kitty_mod+enter" = "launch --cwd=current --type=window";
     };
   };
 
