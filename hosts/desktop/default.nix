@@ -1,12 +1,16 @@
-{ config, pkgs, user, ... }:
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  config,
+  pkgs,
+  user,
+  ...
+}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   imports = [
     ./hardware-configuration.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "amd_iommu=on" ];
+  boot.kernelParams = ["amd_iommu=on"];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -15,25 +19,27 @@
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.libinput.enable = true;
+  # X server options
+  services.xserver = {
+    enable = true;
+    libinput.enable = true;
+    xkb.variant = "colemak_dh";
+  };
+  console.useXkbConfig = true;
 
   # Nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
-
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma6.enable = true;
-  
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -85,7 +91,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "libvirtd"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
@@ -113,4 +119,3 @@
 
   system.stateVersion = "22.11"; # Did you read the comment?
 }
-

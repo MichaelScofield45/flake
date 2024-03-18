@@ -1,6 +1,14 @@
-{ config, pkgs, user, ... }:
-
 {
+  config,
+  pkgs,
+  user,
+  lib,
+  ...
+}: {
+  imports = [
+    ../apps/blender.nix
+  ];
+
   home.username = "ms45";
   home.homeDirectory = "/home/ms45";
   home.stateVersion = "22.11";
@@ -9,7 +17,7 @@
 
   home.packages = with pkgs; [
     # Terminal related pkgs
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     bat
     fd
     ffmpeg
@@ -26,7 +34,6 @@
     trash-cli
 
     # GUI apps
-    blender
     calibre
     chromium
     firefox-beta-bin
@@ -61,7 +68,7 @@
   ];
 
   home.file = {
-    ".mozilla/native-messaging-hosts/tridactyl.json".text = (builtins.toJSON {
+    ".mozilla/native-messaging-hosts/tridactyl.json".text = builtins.toJSON {
       name = "tridactyl";
       description = "Tridactyl native command handler";
       path = "${pkgs.tridactyl-native}/bin/native_main";
@@ -71,7 +78,7 @@
         "tridactyl.vim.betas@cmcaine.co.uk"
         "tridactyl.vim.betas.nonewtab@cmcaine.co.uk"
       ];
-    });
+    };
   };
 
   services.syncthing.enable = true;
@@ -83,7 +90,10 @@
   programs.fish = {
     enable = true;
     plugins = [
-      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      {
+        name = "tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
     ];
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
