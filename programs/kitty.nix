@@ -19,6 +19,7 @@
     keybindings = {
       "kitty_mod+t" = "launch --cwd=current --type=tab";
       "kitty_mod+enter" = "launch --cwd=current --type=window";
+      "kitty_mod+n" = "launch --cwd=current --type=os-window";
     };
   };
 }

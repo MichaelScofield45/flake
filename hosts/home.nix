@@ -9,6 +9,8 @@
     ../programs/blender.nix
     ../programs/kitty.nix
     ../programs/fish.nix
+    # ../programs/river.nix
+    ../programs/hyprland.nix
   ];
 
   home.username = "ms45";
