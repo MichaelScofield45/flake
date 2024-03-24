@@ -27,6 +27,14 @@
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+    kate
+    khelpcenter
+    print-manager
+    konsole
+    plasma-browser-integration
+  ];
 
   # Define login shell
   programs.fish.enable = true;
