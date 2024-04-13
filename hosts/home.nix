@@ -28,12 +28,17 @@
     git
     htop
     jetbrains-mono
+    iosevka
     lazygit
     less
     nnn
     ripgrep
     tealdeer
     trash-cli
+    luajit
+    unzip
+    p7zip
+    gnumake
 
     # GUI apps
     calibre

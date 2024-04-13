@@ -9,8 +9,8 @@
     enable = true;
     theme = "Doom One";
     font = {
-      name = "JetBrains Mono";
-      size = 13.0;
+      name = "Iosevka";
+      size = 15.0;
     };
     settings = {
       window_padding_width = "0 5 0 5";
