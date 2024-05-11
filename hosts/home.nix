@@ -24,6 +24,7 @@
     fd
     ffmpeg
     file
+    fzf
     gdb
     git
     htop
