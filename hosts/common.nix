@@ -17,9 +17,9 @@
   time.timeZone = "America/Mexico_City";
 
   # X server options
+  services.libinput.enable = true;
   services.xserver = {
     enable = true;
-    libinput.enable = true;
     xkb.variant = "colemak_dh";
   };
   console.useXkbConfig = true;
