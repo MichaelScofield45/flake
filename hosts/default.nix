@@ -8,7 +8,7 @@
 }: let
   pkgs = import inputs.nixpkgs {
     inherit system;
-    overlays = [inputs.nvim_overlay.overlay];
+    overlays = [inputs.nvim_overlay.overlays.default];
     config = {
       allowUnfree = true;
     };
