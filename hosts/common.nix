@@ -25,17 +25,16 @@
   console.useXkbConfig = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  #   elisa
-  #   kate
-  #   khelpcenter
-  #   print-manager
-  #   konsole
-  #   plasma-browser-integration
-  # ];
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+    kate
+    khelpcenter
+    print-manager
+    konsole
+    plasma-browser-integration
+  ];
 
   # Define login shell
   programs.fish.enable = true;

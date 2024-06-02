@@ -12,28 +12,32 @@
     config = {
       allowUnfree = true;
     };
+
+  };
+  specialArgs = {
+    inherit user inputs;
   };
 in {
   desktop = lib.nixosSystem {
-    inherit system;
-    specialArgs = {inherit user pkgs inputs;};
+    inherit system pkgs specialArgs;
     modules = [
       ./desktop
       home-manager.nixosModules.home-manager
       {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.${user} = {
-          imports = [./home.nix];
-          blenderCudaSupport = true;
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.${user} = {
+            imports = [./home.nix];
+            blenderCudaSupport = true;
+          };
         };
       }
     ];
   };
 
   laptop = lib.nixosSystem {
-    inherit system;
-    specialArgs = {inherit user pkgs inputs;};
+    inherit system pkgs specialArgs;
     modules = [
       ./laptop
       home-manager.nixosModules.home-manager

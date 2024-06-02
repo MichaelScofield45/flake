@@ -28,6 +28,7 @@
     gdb
     git
     htop
+    libertine
     jetbrains-mono
     iosevka
     lazygit
@@ -40,6 +41,7 @@
     unzip
     p7zip
     gnumake
+    neovim
 
     # GUI apps
     calibre
@@ -60,7 +62,6 @@
   ];
 
   programs.neovim = {
-    enable = true;
     defaultEditor = true;
   };
 

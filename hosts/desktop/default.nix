@@ -4,19 +4,29 @@
   user,
   ...
 }: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    package = pkgs.nixFlakes;
+    settings.experimental-features = ["nix-command" "flakes"];
+  };
   imports = [
     ../common.nix
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = ["amd_iommu=on"];
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+      "amd_iommu=on"
+      # "nvidia-derm.fbdev=1"
+      # "NVreg_EnableGpuFirmware=0"
+  ];
 
   # Nvidia
   services.xserver.videoDrivers = ["nvidia"];
   hardware.opengl.enable = true;
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia= {
+    # open = true;
+    modesetting.enable = true;
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
