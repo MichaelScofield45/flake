@@ -20,6 +20,14 @@
   home.packages = with pkgs; [
     # Terminal related pkgs
     (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    (python311.withPackages (ps: with ps;[
+      numpy
+      ipython
+      matplotlib
+      pandas
+      pynvim
+      jupyter-client
+    ]))
     bat
     fd
     ffmpeg
@@ -61,13 +69,10 @@
     xournalpp
   ];
 
-  programs.neovim = {
-    defaultEditor = true;
-  };
-
   programs.zoxide.enable = true;
 
   home.sessionVariables = {
+    EDITOR = "nvim";
     PAGER = "less";
   };
 
