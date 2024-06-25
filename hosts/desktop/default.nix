@@ -13,7 +13,9 @@
     ./hardware-configuration.nix
   ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  networking.enableIPv6 = false;
+
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
   boot.kernelParams = [
       "amd_iommu=on"
       # "nvidia-derm.fbdev=1"
@@ -22,10 +24,19 @@
 
   # Nvidia
   services.xserver.videoDrivers = ["nvidia"];
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+  };
+
   hardware.nvidia= {
-    # open = true;
+    open = false;
     modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # Enable CUPS to print documents.
@@ -44,7 +55,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "libvirtd"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [];
     shell = pkgs.fish;
   };

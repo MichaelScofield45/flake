@@ -54,7 +54,7 @@
     # GUI apps
     calibre
     chromium
-    firefox-beta-bin
+    firefox-beta
     inkscape
     kitty
     lutris
@@ -119,5 +119,17 @@
   services.easyeffects = {
     enable = true;
     preset = "Default";
+  };
+
+  xdg.desktopEntries = {
+    firefox-nightly = {
+        name = "Firefox Nightly";
+        genericName = "Web Browser";
+        exec = "/home/ms45/Software/firefox/firefox %U";
+        icon = "/home/ms45/Software/firefox/browser/chrome/icons/default64.png";
+        terminal = false;
+        categories = [ "Application" "Network" "WebBrowser" ];
+        mimeType = [ "text/html" "text/xml" ];
+    };
   };
 }
