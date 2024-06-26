@@ -50,6 +50,7 @@
     p7zip
     gnumake
     neovim
+    yazi
 
     # GUI apps
     calibre
