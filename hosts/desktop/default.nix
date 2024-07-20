@@ -13,8 +13,6 @@
     ./hardware-configuration.nix
   ];
 
-  networking.enableIPv6 = false;
-
   boot.kernelPackages = pkgs.linuxPackages_6_8;
   boot.kernelParams = [
       "amd_iommu=on"
@@ -35,7 +33,7 @@
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # Enable CUPS to print documents.
