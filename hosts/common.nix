@@ -20,7 +20,7 @@
   services.libinput.enable = true;
   services.xserver = {
     enable = true;
-    xkb.variant = "colemak_dh";
+    # xkb.variant = "colemak_dh";
   };
   console.useXkbConfig = true;
 
