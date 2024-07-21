@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
       "amd_iommu=on"
       # "nvidia-derm.fbdev=1"
