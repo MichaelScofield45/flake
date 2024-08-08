@@ -43,6 +43,31 @@
 
   services.jackett.enable = true;
 
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    extraConfig = ''
+    server string = File Server
+    map to guest = bad user
+    # usershare allow guests = yes
+    name resolve order = bcast host
+    '';
+    shares.Media = {
+      path = "/home/ms45/Media";
+      writeable = "yes";
+      browseable = "yes";
+      "public" = "yes";
+      "read only" = "no";
+      "guest ok" = "yes";
+      # "force user" = "nobody";
+      # "force user" = "smbuser";
+      # "force group" = "smbgroup";
+      "create mask" = "0664";
+      "directory mask" = "0775";
+      "force create mode" = "0664";
+    };
+  };
+
   virtualisation.libvirtd.enable = true;
   services.jellyfin.enable = true;
 
