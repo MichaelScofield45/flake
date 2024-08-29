@@ -20,20 +20,10 @@
       # "NVreg_EnableGpuFirmware=0"
   ];
 
-  # Nvidia
-  services.xserver.videoDrivers = ["nvidia"];
+  # Graphics
   hardware.graphics = {
       enable = true;
       enable32Bit = true;
-  };
-
-  hardware.nvidia= {
-    open = false;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # Enable CUPS to print documents.

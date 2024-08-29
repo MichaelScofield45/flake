@@ -46,6 +46,7 @@
     tealdeer
     trash-cli
     luajit
+    luajitPackages.luarocks
     unzip
     p7zip
     gnumake
@@ -127,7 +128,7 @@
         name = "Firefox Nightly";
         genericName = "Web Browser";
         exec = "/home/ms45/Software/firefox/firefox %U";
-        icon = "/home/ms45/Software/firefox/browser/chrome/icons/default64.png";
+        # icon = "/home/ms45/Software/firefox/browser/chrome/icons/default64.png";
         terminal = false;
         categories = [ "Application" "Network" "WebBrowser" ];
         mimeType = [ "text/html" "text/xml" ];

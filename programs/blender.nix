@@ -6,11 +6,11 @@
   ...
 }: {
   options = {
-    blenderCudaSupport = lib.mkOption {
+    blenderHipSupport = lib.mkOption {
       default = false;
       type = lib.types.bool;
       description = ''
-        Whether to build blender with cuda support.
+        Whether to build blender with HIP support.
       '';
     };
   };
@@ -18,8 +18,8 @@
   config = {
     home.packages = with pkgs; [
       (
-        if config.blenderCudaSupport
-        then blender.override {cudaSupport = true;}
+        if config.blenderHipSupport
+        then blender-hip
         else blender
       )
     ];
