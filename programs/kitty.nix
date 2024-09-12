@@ -7,7 +7,7 @@
 }: {
   programs.kitty = {
     enable = true;
-    theme = "Doom One";
+    theme = "Mayukai";
     font = {
       name = "Iosevka";
       size = 15.0;
