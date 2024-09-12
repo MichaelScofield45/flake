@@ -51,6 +51,7 @@
     p7zip
     gnumake
     neovim
+    typst
     yazi
 
     # GUI apps
