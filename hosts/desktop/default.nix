@@ -33,16 +33,16 @@
 
   services.jackett.enable = true;
 
-  services.samba = {
-    enable = true;
-    securityType = "user";
-    extraConfig = ''
-    server string = File Server
-    map to guest = bad user
-    # usershare allow guests = yes
-    name resolve order = bcast host
-    '';
-    shares.Media = {
+  services.samba.enable = true;
+  services.samba.settings = {
+    global = {
+      security = "user";
+      "server string" = "File Server";
+      "map to guest" = "bad user";
+      "name resolve order" = "bcast host";
+      # usershare allow guests = yes
+    };
+    Media = {
       path = "/home/ms45/Media";
       writeable = "yes";
       browseable = "yes";
