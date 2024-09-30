@@ -11,10 +11,13 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = ["intel_iommu=on"];
+  boot.kernelParams = ["intel_iommu=on" "radeon.cik_support=0" "amdgpu.cik_support=1"];
 
   # Hardware Acceleration
-  hardware.opengl.enable = true;
+  hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
