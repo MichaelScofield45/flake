@@ -21,6 +21,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [brlaser];
 
   # Enable dconf for easyeffects
   # programs.dconf.enable = true;
