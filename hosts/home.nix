@@ -19,7 +19,7 @@
 
   home.packages = with pkgs; [
     # Terminal related pkgs
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    nerd-fonts.symbols-only
     (python311.withPackages (ps: with ps;[
       numpy
       ipython
