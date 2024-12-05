@@ -5,7 +5,7 @@
   ...
 }: {
   nix = {
-    package = pkgs.nixFlakes;
+    # package = pkgs.nixFlakes;
     settings.experimental-features = ["nix-command" "flakes"];
   };
   imports = [
