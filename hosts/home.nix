@@ -61,6 +61,7 @@
     firefox-beta
     inkscape
     kitty
+    krita
     lutris
     obs-studio
     qbittorrent
@@ -107,7 +108,7 @@
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "onedark";
+      color_theme = "tokyo-night";
       vim_keys = true;
     };
   };

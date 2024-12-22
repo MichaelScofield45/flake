@@ -7,7 +7,7 @@
 }: {
   programs.kitty = {
     enable = true;
-    themeFile = "mayukai";
+    themeFile = "tokyo_night_night";
     font = {
       name = "Iosevka";
       size = 15.0;
