@@ -9,6 +9,7 @@
     ../programs/blender.nix
     ../programs/kitty.nix
     ../programs/fish.nix
+    ../programs/river.nix
   ];
 
   home.username = "ms45";
@@ -85,20 +86,6 @@
     "$HOME/.local/bin"
   ];
 
-  home.file = {
-    ".mozilla/native-messaging-hosts/tridactyl.json".text = builtins.toJSON {
-      name = "tridactyl";
-      description = "Tridactyl native command handler";
-      path = "${pkgs.tridactyl-native}/bin/native_main";
-      type = "stdio";
-      allowed_extensions = [
-        "tridactyl.vim@cmcaine.co.uk"
-        "tridactyl.vim.betas@cmcaine.co.uk"
-        "tridactyl.vim.betas.nonewtab@cmcaine.co.uk"
-      ];
-    };
-  };
-
   services.syncthing.enable = true;
 
   fonts.fontconfig.enable = true;
@@ -124,17 +111,5 @@
   services.easyeffects = {
     enable = true;
     preset = "Default";
-  };
-
-  xdg.desktopEntries = {
-    firefox-nightly = {
-        name = "Firefox Nightly";
-        genericName = "Web Browser";
-        exec = "/home/ms45/Software/firefox/firefox %U";
-        # icon = "/home/ms45/Software/firefox/browser/chrome/icons/default64.png";
-        terminal = false;
-        categories = [ "Application" "Network" "WebBrowser" ];
-        mimeType = [ "text/html" "text/xml" ];
-    };
   };
 }

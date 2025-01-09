@@ -20,6 +20,8 @@
       # "NVreg_EnableGpuFirmware=0"
   ];
 
+  security.pam.services.swaylock = {};
+
   # Graphics
   hardware.graphics = {
       enable = true;

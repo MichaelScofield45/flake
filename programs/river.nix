@@ -5,26 +5,58 @@
   lib,
   ...
 }: {
-  programs.wofi.enable = true;
-  programs.swaylock.enable = true;
-  services.dunst.enable = true;
-  home.pointerCursor = {
-    name = "phinger-cursors";
-    package = pkgs.phinger-cursors;
-    gtk.enable = true;
-    x11.enable = true;
+  programs.yambar = {
+    enable = true;
+    settings = {
+      bar = {
+        location = "top";
+        height = 26;
+        background = "00000066";
+
+        right = [
+        {
+          clock.content = [
+            {
+                string.text = "{time}";
+            }
+          ];
+        }
+        ];
+      };
+    };
   };
+  programs.fuzzel.enable = true;
+  services.mako.enable = true;
+  # home.pointerCursor = {
+  #   name = "phinger-cursors";
+  #   package = pkgs.phinger-cursors;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
+
+  home.packages = with pkgs; [
+    swaylock
+    wlr-randr
+    swaybg
+    pavucontrol
+  ];
 
   wayland.windowManager.river = {
     enable = true;
     settings = {
-      keyboard-layout = "-variant colemak_dh us";
       default-layout = "rivertile";
+      set-repeat = "50 300";
+      spawn = [
+        "\'wlr-randr --output DP-2 --mode 2560x1440@180\'"
+        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/nix001.png\'"
+        "yambar"
+      ];
       map = {
         normal = {
           "Super+Shift Return" = "spawn kitty";
-          "Super R" = "spawn 'wofi --show drun'";
+          "Super R" = "spawn fuzzel";
           "Super Q" = "close";
+          "Super+Control L" = "spawn \'swaylock -i \'";
           "Super+Shift E" = "exit";
           "Super K" = "focus-view previous";
           "Super J" = "focus-view next";
@@ -51,19 +83,21 @@
           "Super+Alt+Shift J" = "resize vertical 100";
           "Super+Alt+Shift K" = "resize vertical -100";
           "Super+Alt+Shift L" = "resize horizontal 100";
+          "Super Space" = "toggle-float";
+          "Super F" = "toggle-fullscreen";
         };
       };
+    map-pointer = {
+      normal = {
+        "Super BTN_LEFT" = "move-view";
+        "Super BTN_RIGHT" = "resize-view";
+        "Super BTN_MIDDLE" = "toggle-float";
+      };
+    };
     };
     extraSessionVariables = {
     };
     extraConfig = ''
-      riverctl keyboard-layout -variant colemak_dh en
-
-      riverctl map-pointer normal Super BTN_LEFT move-view
-      riverctl map-pointer normal Super BTN_RIGHT resize-view
-      riverctl map-pointer normal Super BTN_MIDDLE toggle-float
-      riverctl map normal Super Space toggle-float
-      riverctl map normal Super F toggle-fullscreen
       riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
       riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
       riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"

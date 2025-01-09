@@ -7,7 +7,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -18,25 +17,10 @@
 
   # X server options
   services.libinput.enable = true;
-  services.xserver = {
-    enable = true;
-    # xkb.variant = "colemak_dh";
-  };
-  console.useXkbConfig = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    kate
-    khelpcenter
-    print-manager
-    konsole
-    plasma-browser-integration
-  ];
+  services.displayManager.sddm.wayland.enable = true;
 
   # Define login shell
   programs.fish.enable = true;
@@ -75,10 +59,6 @@
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    gcc
-    wget
-    patchelf
-    virt-manager
   ];
 
   # Enable the OpenSSH daemon.
