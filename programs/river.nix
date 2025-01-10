@@ -17,8 +17,17 @@
         {
           clock.content = [
             {
-                string.text = "{time}";
+                string = {
+                    text = "{time}";
+                    right-margin = 5;
+                };
             }
+            {
+              string = {
+                text = "hello from yambar!";
+                right-margin = 5;
+              };
+             }
           ];
         }
         ];
@@ -27,18 +36,13 @@
   };
   programs.fuzzel.enable = true;
   services.mako.enable = true;
-  # home.pointerCursor = {
-  #   name = "phinger-cursors";
-  #   package = pkgs.phinger-cursors;
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  # };
 
   home.packages = with pkgs; [
     swaylock
     wlr-randr
     swaybg
     pavucontrol
+    pamixer
   ];
 
   wayland.windowManager.river = {
