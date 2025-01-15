@@ -24,11 +24,11 @@
 
   # X server options
   services.libinput.enable = true;
-  services.xserver = {
-    enable = true;
-    # xkb.variant = "colemak_dh";
-  };
-  console.useXkbConfig = true;
+  # services.xserver = {
+  #   enable = true;
+  #   # xkb.variant = "colemak_dh";
+  # };
+  # console.useXkbConfig = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -88,12 +88,16 @@
   environment.systemPackages = with pkgs; [
     qbittorrent-nox
   ];
-  systemd.services.qbittorrent-nox-startup = {
-    description = "Start qbittorrent-nox as a daemon when server is started";
-    script = ''
-      qbittorrent-nox -d
-    '';
-    wantedBy = ["multi-user.target"];
+  systemd.user.services.qbittorrent-nox-startup = {
+    enable = true;
+    description = "qbittorrent-nox as a daemon when server is started";
+    after = [ "network-online.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+      Restart = "always";
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
