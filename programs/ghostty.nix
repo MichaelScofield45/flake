@@ -7,7 +7,11 @@
 }: {
   programs.ghostty = {
     enable = true;
-    font-family = "Iosevka";
-    font-size = 15.0;
+    settings = {
+      font-family = "Iosevka";
+      font-size = 15.0;
+      theme = "tokyonight_night";
+      window-padding-x = 8;
+    };
   };
 }
