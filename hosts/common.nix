@@ -9,8 +9,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -25,8 +23,6 @@
   console.useXkbConfig = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -43,6 +39,7 @@
 
   hardware.bluetooth.enable = true;
 
+  security.rtkit.enable = true;
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -75,10 +72,6 @@
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    gcc
-    wget
-    patchelf
-    virt-manager
   ];
 
   # Enable the OpenSSH daemon.

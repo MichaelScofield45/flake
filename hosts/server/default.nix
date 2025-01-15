@@ -14,11 +14,11 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-      "amd_iommu=on"
-      # "nvidia-derm.fbdev=1"
-      # "NVreg_EnableGpuFirmware=0"
-  ];
+  # boot.kernelParams = [
+  #     # "intel_iommu=on" # for virtualization only
+  #     # "nvidia-derm.fbdev=1"
+  #     # "NVreg_EnableGpuFirmware=0"
+  # ];
 
   # Graphics
   hardware.graphics = {
@@ -26,8 +26,14 @@
       enable32Bit = true;
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  hardware.nvidia= {
+    open = false;
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    nvidiaSettings = true;
+  };
+
 
   hardware.xpadneo.enable = true;
 
@@ -58,7 +64,6 @@
     };
   };
 
-  virtualisation.libvirtd.enable = true;
   services.jellyfin.enable = true;
 
   # Enable dconf for easyeffects
@@ -68,7 +73,9 @@
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [];
+    packages = with pkgs; [
+        kodi
+    ];
     shell = pkgs.fish;
   };
 
