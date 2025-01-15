@@ -88,7 +88,7 @@
   environment.systemPackages = with pkgs; [
     qbittorrent-nox
   ];
-  systemd.services.${user}.qbittorrent-nox-startup = {
+  systemd.services.qbittorrent-nox-startup = {
     description = "Start qbittorrent-nox as a daemon when server is started";
     script = ''
       qbittorrent-nox -d
