@@ -97,6 +97,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.fish.enable = true;
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
