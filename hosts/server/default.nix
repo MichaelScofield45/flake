@@ -9,16 +9,28 @@
     settings.experimental-features = ["nix-command" "flakes"];
   };
   imports = [
-    ../common.nix
     ./hardware-configuration.nix
   ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "nixos-server"; # Define your hostname.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
+  # Set your time zone.
+  time.timeZone = "America/Mexico_City";
+
+  # X server options
+  services.libinput.enable = true;
+  services.xserver = {
+    enable = true;
+    # xkb.variant = "colemak_dh";
+  };
+  console.useXkbConfig = true;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelParams = [
-  #     # "intel_iommu=on" # for virtualization only
-  #     # "nvidia-derm.fbdev=1"
-  #     # "NVreg_EnableGpuFirmware=0"
-  # ];
 
   # Graphics
   hardware.graphics = {
@@ -34,10 +46,17 @@
     nvidiaSettings = true;
   };
 
-
-  hardware.xpadneo.enable = true;
-
   services.jackett.enable = true;
+
+  networking.firewall.allowedTCPPorts = [
+    8096
+    8081
+  ];
+
+  networking.firewall.allowedUDPPorts = [
+    8096
+    8081
+  ];
 
   services.samba.enable = true;
   services.samba.settings = {
@@ -65,16 +84,28 @@
   };
 
   services.jellyfin.enable = true;
-
-  # Enable dconf for easyeffects
-  # programs.dconf.enable = true;
+  services.openssh.enable = true;
+  environment.systemPackages = with pkgs; [
+    qbittorrent-nox
+  ];
+  systemd.services.${user}.qbittorrent-nox-startup = {
+    description = "Start qbittorrent-nox as a daemon when server is started";
+    script = ''
+      qbittorrent-nox -d
+    '';
+    wantedBy = ["multi-user.target"];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-        kodi
+      bash
+      bat
+      neovim
+      ripgrep
+      fd
     ];
     shell = pkgs.fish;
   };
