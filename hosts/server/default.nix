@@ -111,6 +111,9 @@
       neovim
       ripgrep
       fd
+      zoxide
+      fzf
+      nnn
     ];
     shell = pkgs.fish;
   };
