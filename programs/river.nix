@@ -5,32 +5,42 @@
   lib,
   ...
 }: {
-  programs.yambar = {
+  programs.waybar = {
     enable = true;
     settings = {
-      bar = {
-        location = "top";
-        height = 26;
-        background = "00000066";
-
-        right = [
-        {
-          clock.content = [
-            {
-                string = {
-                    text = "{time}";
-                    right-margin = 5;
-                };
-            }
-            {
-              string = {
-                text = "hello from yambar!";
-                right-margin = 5;
-              };
-             }
-          ];
-        }
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+        spacing = 4;
+        output = [
+          "DP-2"
         ];
+        modules-left = [ "river/tags"  ];
+        modules-center = [ "river/window" "custom/hello-from-waybar" ];
+        modules-right = [ "pulseaudio" "clock" ];
+
+        pulseaudio = {
+          format = "{volume}% {icon}";
+            format-muted =" ";
+            format-icons = {
+              # alsa_output.pci-0000_00_1f.3.analog-stereo =" ";
+              # alsa_output.pci-0000_00_1f.3.analog-stereo-muted ="  ";
+              default = [" " " "];
+            };
+          scroll-step = 1;
+          on-click = "pavucontrol";
+          ignored-sinks = "[Easy Effects Sink]";
+        };
+
+        "custom/hello-from-waybar" = {
+          format = "hello {}";
+          max-length = 40;
+          interval = "once";
+          exec = pkgs.writeShellScript "hello-from-waybar" ''
+            echo "from within waybar"
+            '';
+        };
       };
     };
   };
@@ -38,11 +48,13 @@
   services.mako.enable = true;
 
   home.packages = with pkgs; [
-    swaylock
     wlr-randr
     swaybg
+    swaylock
+    swayidle
     pavucontrol
     pamixer
+    xfce.thunar
   ];
 
   wayland.windowManager.river = {
@@ -52,15 +64,16 @@
       set-repeat = "50 300";
       spawn = [
         "\'wlr-randr --output DP-2 --mode 2560x1440@180\'"
-        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/nix001.png\'"
-        "yambar"
+        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/leaf.png\'"
+        "waybar"
       ];
       map = {
         normal = {
           "Super+Shift Return" = "spawn kitty";
           "Super R" = "spawn fuzzel";
+          "Super E" = "spawn thunar";
           "Super Q" = "close";
-          "Super+Control L" = "spawn \'swaylock -i \'";
+          "Super+Control L" = "spawn \'swaylock -i ~/Pictures/Wallpapers/leaf.png\'";
           "Super+Shift E" = "exit";
           "Super K" = "focus-view previous";
           "Super J" = "focus-view next";
