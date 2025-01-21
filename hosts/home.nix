@@ -8,6 +8,7 @@
   imports = [
     ../programs/blender.nix
     ../programs/kitty.nix
+    ../programs/ghostty.nix
     ../programs/fish.nix
     ../programs/river.nix
   ];
@@ -61,7 +62,6 @@
     chromium
     firefox-beta
     inkscape
-    kitty
     krita
     lutris
     obs-studio

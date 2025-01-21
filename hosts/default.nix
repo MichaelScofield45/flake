@@ -50,4 +50,11 @@ in {
       }
     ];
   };
+
+  server = lib.nixosSystem {
+    inherit system pkgs specialArgs;
+    modules = [
+      ./server
+    ];
+  };
 }
