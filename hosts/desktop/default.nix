@@ -20,6 +20,10 @@
   # ];
 
   security.pam.services.swaylock = {};
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
   # Graphics
   hardware.graphics = {
