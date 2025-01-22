@@ -123,6 +123,8 @@
     swaybg
     swaylock
     swayidle
+    grim
+    slurp
     pavucontrol
     pamixer
     xfce.xfconf
@@ -138,8 +140,8 @@
       set-repeat = "50 300";
       keyboard-layout = "\'us(altgr-intl)\'";
       spawn = [
-        "\'wlr-randr --output DP-2 --mode 2560x1440@180\'"
-        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/leaf.jpg\'"
+        "'wlr-randr --output DP-2 --mode 2560x1440@180'"
+        "'swaybg --mode fill --image ~/Pictures/Wallpapers/leaf.jpg'"
         "waybar"
       ];
       map = {
@@ -147,6 +149,8 @@
           "Super+Shift Return" = "spawn ghostty";
           "Super R" = "spawn fuzzel";
           "Super E" = "spawn thunar";
+          "Super S" = "spawn 'grim -g \"$(slurp -w 0)\" - | wl-copy'";
+          "Super+Shift S" = "spawn 'grim - | wl-copy'";
           "Super Q" = "close";
           "Super+Control L" = "spawn 'swaylock -s fit -i ~/Pictures/Wallpapers/leaf.jpg'";
           "Super+Shift E" = "exit";
