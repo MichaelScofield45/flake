@@ -13,6 +13,11 @@
         src = pkgs.fishPlugins.tide.src;
       }
     ];
+    loginShellInit = ''
+      if test -n $WAYLAND_DISPLAY; and test $(tty) = "/dev/tty1"
+        exec river
+      end
+    '';
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
