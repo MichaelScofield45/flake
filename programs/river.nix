@@ -18,7 +18,12 @@
         ];
         modules-left = [ "river/tags"  ];
         modules-center = [ "river/window" ];
-        modules-right = [ "pulseaudio" "clock" ];
+        modules-right = [ "tray" "pulseaudio" "clock" ];
+
+        tray = {
+          icon-size = 21;
+          spacing = 10;
+        };
 
         pulseaudio = {
           format = "{volume}% {icon}";
@@ -117,21 +122,6 @@
   };
   programs.fuzzel.enable = true;
   services.mako.enable = true;
-
-  home.packages = with pkgs; [
-    wlr-randr
-    swaybg
-    swaylock
-    swayidle
-    grim
-    slurp
-    pavucontrol
-    pamixer
-    xfce.xfconf
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
-  ];
 
   wayland.windowManager.river = {
     enable = true;
