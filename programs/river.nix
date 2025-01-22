@@ -47,16 +47,31 @@
       }
 
       window#waybar {
-          background: transparent,
+        background: transparent;
+        color: #ffffff;
+        transition-property: background-color;
+        transition-duration: .5s;
       }
 
       window#waybar.hidden {
           opacity: 0.2;
       }
 
+      button {
+        box-shadow: inset 0 -3px transparent;
+        border: none;
+        border-radius: 0;
+        text-shadow: none;
+      }
+
+      button:hover {
+        background: inherit;
+        box-shadow: none;
+      }
+
       #window {
         border-radius: 26px;
-        background-color: rgba(43, 48, 59, 0.8);
+        background: rgba(43, 48, 59, 0.8);
         padding: 0 20px 0 20px;
         margin-top: 5px;
       }
@@ -69,8 +84,9 @@
       #tags button {
         margin-right: 5px;
         border-radius: 26px;
-        background-color: transparent;
+        background: transparent;
         padding: 5px 10px;
+        color: white;
       }
 
       #tags button.focused {
@@ -82,7 +98,7 @@
       #tags button:hover {
         margin-right: 5px;
         border-radius: 26px;
-        background-color: rgba(43, 48, 59, 0.7);
+        background-color: rgba(43, 48, 59, 0.8);
       }
 
       #pulseaudio {
@@ -96,13 +112,6 @@
         margin-right: 5px;
         padding: 5px 10px;
         background-color: #64727D;
-      }
-
-      @keyframes blink {
-          to {
-              background-color: #ffffff;
-              color: black;
-          }
       }
     '';
   };
