@@ -17,32 +17,94 @@
           "DP-2"
         ];
         modules-left = [ "river/tags"  ];
-        modules-center = [ "river/window" "custom/hello-from-waybar" ];
+        modules-center = [ "river/window" ];
         modules-right = [ "pulseaudio" "clock" ];
 
         pulseaudio = {
           format = "{volume}% {icon}";
             format-muted =" ";
             format-icons = {
-              # alsa_output.pci-0000_00_1f.3.analog-stereo =" ";
-              # alsa_output.pci-0000_00_1f.3.analog-stereo-muted ="  ";
               default = [" " " "];
             };
           scroll-step = 1;
           on-click = "pavucontrol";
-          ignored-sinks = "[Easy Effects Sink]";
+          ignored-sinks = [ "Easy Effects Sink" ];
         };
 
-        "custom/hello-from-waybar" = {
-          format = "hello {}";
-          max-length = 40;
-          interval = "once";
-          exec = pkgs.writeShellScript "hello-from-waybar" ''
-            echo "from within waybar"
-            '';
+        clock = {
+          tooltip = false;
         };
       };
     };
+
+    style = ''
+      * {
+          border: none;
+          border-radius: 0;
+          font-family: Iosevka, Helvetica, Arial, sans-serif;
+          font-size: 12pt;
+          min-height: 0;
+      }
+
+      window#waybar {
+          background: transparent,
+      }
+
+      window#waybar.hidden {
+          opacity: 0.2;
+      }
+
+      #window {
+        border-radius: 26px;
+        background-color: rgba(43, 48, 59, 0.8);
+        padding: 0 20px 0 20px;
+        margin-top: 5px;
+      }
+
+      #tags {
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+
+      #tags button {
+        margin-right: 5px;
+        border-radius: 26px;
+        background-color: transparent;
+        padding: 5px 10px;
+      }
+
+      #tags button.focused {
+        margin-right: 5px;
+        border-radius: 26px;
+        background-color: #437756;
+      }
+
+      #tags button:hover {
+        margin-right: 5px;
+        border-radius: 26px;
+        background-color: rgba(43, 48, 59, 0.7);
+      }
+
+      #pulseaudio {
+        border-radius: 26px;
+        background-color: transparent;
+      }
+
+      #clock {
+        border-radius: 26px;
+        margin-top: 5px;
+        margin-right: 5px;
+        padding: 5px 10px;
+        background-color: #64727D;
+      }
+
+      @keyframes blink {
+          to {
+              background-color: #ffffff;
+              color: black;
+          }
+      }
+    '';
   };
   programs.fuzzel.enable = true;
   services.mako.enable = true;
@@ -54,7 +116,10 @@
     swayidle
     pavucontrol
     pamixer
+    xfce.xfconf
     xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
   ];
 
   wayland.windowManager.river = {
@@ -62,18 +127,19 @@
     settings = {
       default-layout = "rivertile";
       set-repeat = "50 300";
+      keyboard-layout = "\'us(altgr-intl)\'";
       spawn = [
         "\'wlr-randr --output DP-2 --mode 2560x1440@180\'"
-        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/leaf.png\'"
+        "\'swaybg --mode fill --image ~/Pictures/Wallpapers/leaf.jpg\'"
         "waybar"
       ];
       map = {
         normal = {
-          "Super+Shift Return" = "spawn kitty";
+          "Super+Shift Return" = "spawn ghostty";
           "Super R" = "spawn fuzzel";
           "Super E" = "spawn thunar";
           "Super Q" = "close";
-          "Super+Control L" = "spawn \'swaylock -i ~/Pictures/Wallpapers/leaf.png\'";
+          "Super+Control L" = "spawn 'swaylock -s fit -i ~/Pictures/Wallpapers/leaf.jpg'";
           "Super+Shift E" = "exit";
           "Super K" = "focus-view previous";
           "Super J" = "focus-view next";
@@ -84,10 +150,10 @@
           "Super+Shift Period" = "send-to-output next";
           "Super+Shift Comma" = "send-to-output previous";
           "Super Return" = "zoom";
-          "Super H" = "send-layout-cmd rivertile main-ratio -0.05";
-          "Super L" = "send-layout-cmd rivertile main-ratio +0.05";
-          "Super+Shift H" = "send-layout-cmd rivertile main-count +1";
-          "Super+Shift L" = "send-layout-cmd rivertile main-count -1";
+          "Super H" = "send-layout-cmd rivertile 'main-ratio -0.05'";
+          "Super L" = "send-layout-cmd rivertile 'main-ratio +0.05'";
+          "Super+Shift H" = "send-layout-cmd rivertile 'main-count +1'";
+          "Super+Shift L" = "send-layout-cmd rivertile 'main-count -1'";
           "Super+Alt H" = "move left 100";
           "Super+Alt J" = "move down 100";
           "Super+Alt K" = "move up 100";
@@ -104,16 +170,25 @@
           "Super F" = "toggle-fullscreen";
         };
       };
-    map-pointer = {
-      normal = {
-        "Super BTN_LEFT" = "move-view";
-        "Super BTN_RIGHT" = "resize-view";
-        "Super BTN_MIDDLE" = "toggle-float";
+
+      map-pointer = {
+        normal = {
+          "Super BTN_LEFT" = "move-view";
+          "Super BTN_RIGHT" = "resize-view";
+          "Super BTN_MIDDLE" = "toggle-float";
+        };
+      };
+
+      rule-add = {
+        "-title" = {
+          "'Volume Control'" = "float";
+          "'*Thunar'" = "float";
+        };
       };
     };
-    };
-    extraSessionVariables = {
-    };
+
+    extraSessionVariables = {};
+
     extraConfig = ''
       riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
       riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
