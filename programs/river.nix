@@ -233,5 +233,13 @@
       rivertile -view-padding 6 -outer-padding 6 &
     '';
   };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
 }
 

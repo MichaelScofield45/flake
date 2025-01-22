@@ -8,7 +8,7 @@
     nvim_overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
     let
       user = "ms45";
       system = "x86_64-linux";

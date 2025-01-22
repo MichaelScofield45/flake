@@ -34,10 +34,8 @@
 
   hardware.xpadneo.enable = true;
 
-  services.jackett.enable = true;
-
-  # Enable dconf for easyeffects
-  # programs.dconf.enable = true;
+  # Enable dconf for GTK applications
+  programs.dconf.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
