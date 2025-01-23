@@ -55,22 +55,8 @@
     neovim
     typst
     yazi
-    wlr-randr
-    swaybg
-    swaylock
-    swayidle
-    grim
-    slurp
-    pamixer
-    gamemode
 
     # GUI apps
-    xfce.xfconf # Thunar preferences
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
-    calibre
-    papers
     foliate
     chromium
     firefox-beta
