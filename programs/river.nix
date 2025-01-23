@@ -61,6 +61,10 @@
           "Super+Alt+Shift L" = "resize horizontal 100";
           "Super Space" = "toggle-float";
           "Super F" = "toggle-fullscreen";
+          "Super Up"    = "'send-layout-cmd rivertile \"main-location top\"'";
+          "Super Right" = "'send-layout-cmd rivertile \"main-location right\"'";
+          "Super Down"  = "'send-layout-cmd rivertile \"main-location bottom\"'";
+          "Super Left"  = "'send-layout-cmd rivertile \"main-location left\"'";
         };
       };
 
@@ -87,11 +91,6 @@
     };
 
     extraConfig = ''
-      riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
-      riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
-      riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
-      riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
-
       for i in $(seq 1 9)
       do
           tags=$((1 << ($i - 1)))
