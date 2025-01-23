@@ -12,7 +12,7 @@
 
   wayland.windowManager.river = let
     wallpaper = "~/Pictures/Wallpapers/leaf.jpg";
-    swaylock = "swaylock -s fit -i ${wallpaper}";
+    swaylock = "swaylock -f -s fit -i ${wallpaper}";
   in {
     enable = true;
     systemd.enable = true;
