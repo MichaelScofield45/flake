@@ -10,6 +10,14 @@
   programs.fuzzel.enable = true;
   services.mako.enable = true;
 
+  programs.fish = {
+    loginShellInit = ''
+      if test -n $WAYLAND_DISPLAY; and test $(tty) = "/dev/tty1"
+        exec river
+      end
+    '';
+  };
+
   wayland.windowManager.river = let
     wallpaper = "~/Pictures/Wallpapers/leaf.jpg";
     swaylock = "swaylock -f -s fit -i ${wallpaper}";
