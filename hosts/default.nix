@@ -28,7 +28,10 @@ in {
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${user} = {
-            imports = [./home.nix];
+            imports = [
+              ./home.nix
+              ../programs/river.nix
+            ];
             blenderHipSupport = true;
           };
         };

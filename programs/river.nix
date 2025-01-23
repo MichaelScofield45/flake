@@ -5,6 +5,8 @@
   lib,
   ...
 }: {
+  imports = [ ./waybar.nix ];
+
   programs.fuzzel.enable = true;
   services.mako.enable = true;
 
@@ -136,6 +138,13 @@
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
+  };
+
+  home.pointerCursor = {
+    name = "phinger-cursors-dark";
+    package = pkgs.phinger-cursors;
+    size = 32;
+    gtk.enable = true;
   };
 }
 

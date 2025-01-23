@@ -10,7 +10,6 @@
     ../programs/kitty.nix
     ../programs/ghostty.nix
     ../programs/fish.nix
-    ../programs/river.nix
   ];
 
   home.username = "ms45";
