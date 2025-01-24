@@ -26,6 +26,7 @@
     systemd.enable = true;
     settings = {
       default-layout = "rivertile";
+      focus-follows-cursor = "normal";
       set-repeat = "50 300";
       keyboard-layout = "\'us(altgr-intl)\'";
       spawn = [
