@@ -27,6 +27,7 @@
     settings = {
       default-layout = "rivertile";
       focus-follows-cursor = "normal";
+      xcursor-theme = "phinger-cursors-dark";
       set-repeat = "50 300";
       keyboard-layout = "\'us(altgr-intl)\'";
       spawn = [
