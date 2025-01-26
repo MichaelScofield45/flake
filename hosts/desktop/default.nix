@@ -32,8 +32,6 @@
       enable32Bit = true;
   };
 
-  hardware.xpadneo.enable = true;
-
   # Enable steam
   programs.steam.enable = true;
 
