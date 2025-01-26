@@ -104,6 +104,7 @@
   programs.fish.enable = true;
   users.users.${user} = {
     isNormalUser = true;
+    linger = true; # Have systemd services start at boot and not login
     extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       bash
