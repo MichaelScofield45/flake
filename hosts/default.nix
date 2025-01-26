@@ -32,7 +32,7 @@ in {
               ./home.nix
               ../programs/river.nix
             ];
-            blenderHipSupport = true;
+            blenderHipSupport = false;
           };
         };
       }
