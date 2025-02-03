@@ -10,6 +10,25 @@
   programs.fuzzel.enable = true;
   services.mako.enable = true;
 
+  home.packages = with pkgs; [
+    # WM minimum required apps for functionality
+    wlr-randr
+    swaybg
+    swaylock
+    swayidle
+    grim
+    slurp
+    pamixer
+    gamemode
+
+    # GUI apps
+    xfce.xfconf # Thunar preferences
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
+    papers
+  ];
+
   programs.fish = {
     loginShellInit = ''
       if test -n $WAYLAND_DISPLAY; and test $(tty) = "/dev/tty1"
