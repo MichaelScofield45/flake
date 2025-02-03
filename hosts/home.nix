@@ -58,6 +58,7 @@
     # GUI apps
     foliate
     chromium
+    calibre
     firefox-beta
     inkscape
     krita

@@ -16,12 +16,9 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  security.pam.services.swaylock = {};
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    config.common.default = "gtk";
-  };
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Input peripheral options
   services.libinput.enable = true;
@@ -45,25 +42,7 @@
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "dialout"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      # WM minimum required apps for functionality
-      wlr-randr
-      swaybg
-      swaylock
-      swayidle
-      grim
-      slurp
-      pamixer
-      gamemode
-
-      # GUI apps
-      xfce.xfconf # Thunar preferences
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      xfce.thunar-volman
-      calibre
-      papers
-    ];
+    packages = with pkgs; [];
     shell = pkgs.fish;
   };
 
