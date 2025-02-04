@@ -42,7 +42,9 @@
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "dialout"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      gamemode
+    ];
     shell = pkgs.fish;
   };
 
