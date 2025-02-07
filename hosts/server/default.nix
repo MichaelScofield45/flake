@@ -24,11 +24,6 @@
 
   # X server options
   services.libinput.enable = true;
-  # services.xserver = {
-  #   enable = true;
-  #   # xkb.variant = "colemak_dh";
-  # };
-  # console.useXkbConfig = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

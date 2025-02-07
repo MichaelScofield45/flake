@@ -55,6 +55,15 @@ in {
     inherit system pkgs specialArgs;
     modules = [
       ./server
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${user} = {
+          imports = [./home.nix];
+          headless.enable = true;
+        };
+      }
     ];
   };
 }

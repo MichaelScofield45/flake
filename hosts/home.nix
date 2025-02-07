@@ -10,6 +10,7 @@
     ../programs/kitty.nix
     ../programs/ghostty.nix
     ../programs/fish.nix
+    ../modules/hm/headless.nix
   ];
 
   home.username = "ms45";
@@ -20,7 +21,6 @@
 
   home.packages = with pkgs; [
     # Terminal related pkgs
-    nerd-fonts.symbols-only
     (python311.withPackages (ps: with ps;[
       numpy
       ipython
@@ -54,7 +54,7 @@
     neovim
     typst
     yazi
-
+  ] ++ lib.optionals (!config.headless.enable) (with pkgs; [
     # GUI apps
     foliate
     chromium
@@ -73,7 +73,7 @@
     wl-clipboard
     xclip
     xournalpp
-  ];
+  ]);
 
   programs.zoxide.enable = true;
 
@@ -86,12 +86,7 @@
     "$HOME/.local/bin"
   ];
 
-  services.syncthing.enable = true;
-
-  fonts.fontconfig.enable = true;
-
   programs.bash.enable = true;
-
   programs.btop = {
     enable = true;
     settings = {
@@ -99,6 +94,9 @@
       vim_keys = true;
     };
   };
+
+  services.syncthing.enable = true;
+  fonts.fontconfig.enable = true;
 
   programs.mpv = {
     enable = true;
