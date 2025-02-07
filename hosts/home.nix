@@ -39,7 +39,7 @@
     htop
     libertine
     jetbrains-mono
-    iosevka
+    iosevka-bin
     lazygit
     less
     nnn

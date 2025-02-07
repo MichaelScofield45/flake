@@ -8,7 +8,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      font-family = "Iosevka";
+      font-family = "Iosevka Term";
       font-size = 15.0;
       theme = "tokyonight_night";
       window-padding-x = 8;
