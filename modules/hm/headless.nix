@@ -5,11 +5,11 @@
   };
 
   config = lib.mkIf config.headless.enable {
-    programs.ghostty.enable = false;
-    programs.kitty.enable = false;
-    services.syncthing.enable = false;
-    fonts.fontconfig.enable = false;
-    programs.mpv.enable = false;
-    services.easyeffects.enable = false;
+    programs.ghostty.enable = lib.mkForce false;
+    programs.kitty.enable = lib.mkForce false;
+    services.syncthing.enable = lib.mkForce false;
+    fonts.fontconfig.enable = lib.mkForce false;
+    programs.mpv.enable = lib.mkForce false;
+    services.easyeffects.enable = lib.mkForce false;
   };
 }
