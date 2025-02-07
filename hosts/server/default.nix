@@ -101,18 +101,7 @@
     isNormalUser = true;
     linger = true; # Have systemd services start at boot and not login
     extraGroups = ["wheel" "libvirtd" "dialout"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      gcc
-      bash
-      bat
-      neovim
-      ripgrep
-      fd
-      zoxide
-      fzf
-      nnn
-      git
-    ];
+    packages = with pkgs; [];
     shell = pkgs.fish;
   };
 
