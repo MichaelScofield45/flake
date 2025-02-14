@@ -34,14 +34,28 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [brlaser];
 
+  services.pipewire.wireplumber.extraConfig."99-disable-suspend" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {
+            "node.name" = "alsa_output.pci-0000_00_1b.0.analog-stereo";
+          }
+        ];
+        actions = {
+          update-props = {
+            "session.suspend-timeout-seconds" = 0;
+          };
+        };
+      }
+    ];
+  };
+
   # Enable steam
   programs.steam.enable = true;
 
   # Enable kdeconnect
   programs.kdeconnect.enable = true;
-
-  # Enable dconf for easyeffects
-  # programs.dconf.enable = true;
 
   users.users.${user} = {
     isNormalUser = true;
