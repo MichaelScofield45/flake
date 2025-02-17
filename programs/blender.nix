@@ -4,8 +4,11 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  cfg = config;
+in {
   options = {
+    mine.blender.enable = lib.mkEnableOption "blender";
     blenderHipSupport = lib.mkOption {
       default = false;
       type = lib.types.bool;
@@ -15,7 +18,7 @@
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.mine.blender.enable {
     home.packages = with pkgs; [
       (
         if config.blenderHipSupport
