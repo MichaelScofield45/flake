@@ -10,7 +10,7 @@
   };
   imports = [
     ./hardware-configuration.nix
-    ../../modules/hm/headless.nix
+    ../../modules/headless.nix
   ];
 
   mine.headless.enable = true;
