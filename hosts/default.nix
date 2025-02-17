@@ -61,7 +61,6 @@ in {
         home-manager.useUserPackages = true;
         home-manager.users.${user} = {
           imports = [./home.nix];
-          headless.enable = true;
         };
       }
     ];

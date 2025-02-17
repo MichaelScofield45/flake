@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 {
   options = {
-    headless.enable = lib.mkEnableOption "disable all gui applications";
+    mine.headless.enable = lib.mkEnableOption "disable all gui applications";
   };
 }

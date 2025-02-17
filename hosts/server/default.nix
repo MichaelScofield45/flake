@@ -10,7 +10,10 @@
   };
   imports = [
     ./hardware-configuration.nix
+    ../../modules/hm/headless.nix
   ];
+
+  mine.headless.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

@@ -1,16 +1,19 @@
 {
   config,
+  osConfig,
   pkgs,
   user,
   lib,
   ...
-}: {
+}: let
+  cfg = config;
+  osCfg = osConfig;
+in {
   imports = [
     ../programs/blender.nix
     ../programs/kitty.nix
     ../programs/ghostty.nix
     ../programs/fish.nix
-    ../modules/hm/headless.nix
   ];
   config = lib.mkMerge [
     ({
@@ -80,7 +83,7 @@
     })
 
 
-    (lib.mkIf (!config.headless.enable) {
+    (lib.mkIf (!osCfg.mine.headless.enable) {
       home.packages = with pkgs; [
         # GUI apps
         foliate
