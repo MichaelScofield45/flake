@@ -8,6 +8,7 @@
   imports = [
     ../common.nix
     ./hardware-configuration.nix
+    ../../modules/headless.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
