@@ -25,16 +25,6 @@
     alsa.support32Bit = true;
   };
 
-  networking.firewall.allowedTCPPorts = [
-    8384 # syncthing
-    22000 # syncthing
-  ];
-
-  networking.firewall.allowedUDPPorts = [
-    22000 # syncthing
-    21027 # syncthing
-  ];
-
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     gcc
