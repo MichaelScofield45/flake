@@ -17,12 +17,15 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # Input peripheral options
   services.libinput.enable = true;
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   # Graphics
   hardware.graphics = {
@@ -30,13 +33,10 @@
       enable32Bit = true;
   };
 
-  # Enable steam
   programs.steam.enable = true;
 
-  # Enable kdeconnect
   programs.kdeconnect.enable = true;
 
-  # Enable dconf for GTK applications
   programs.dconf.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
