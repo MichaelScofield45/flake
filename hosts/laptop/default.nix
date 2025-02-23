@@ -12,7 +12,13 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = ["intel_iommu=on" "radeon.cik_support=0" "amdgpu.cik_support=1"];
+  boot.kernelParams = [ "intel_iommu=on" ];
+
+  programs.appimage.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   networking.hostName = "nixos-laptop"; # Define your hostname.
 
