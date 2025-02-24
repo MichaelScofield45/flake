@@ -51,6 +51,7 @@ in {
         luajit
         luajitPackages.luarocks
         unzip
+        stow
         p7zip
         gnumake
         neovim
