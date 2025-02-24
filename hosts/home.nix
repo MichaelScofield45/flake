@@ -14,6 +14,7 @@ in {
     ../programs/kitty.nix
     ../programs/ghostty.nix
     ../programs/fish.nix
+    ../programs/nnn.nix
   ];
   config = lib.mkMerge [
     ({
@@ -62,7 +63,7 @@ in {
 
       programs.zoxide.enable = true;
       programs.fzf.enable = true;
-      programs.nnn.enable = true;
+      mine.nnn.enable = true;
 
       home.sessionVariables = {
         EDITOR = "nvim";
