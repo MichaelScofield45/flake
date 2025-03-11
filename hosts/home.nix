@@ -15,6 +15,7 @@ in {
     ../programs/ghostty.nix
     ../programs/fish.nix
     ../programs/nnn.nix
+    ../programs/zk.nix
   ];
   config = lib.mkMerge [
     ({
@@ -110,6 +111,8 @@ in {
       mine.kitty.enable = true;
       mine.ghostty.enable = true;
       mine.blender.enable = true;
+
+      mine.zk.enable = true;
 
       services.syncthing.enable = true;
       fonts.fontconfig.enable = true;
