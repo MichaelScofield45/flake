@@ -29,7 +29,7 @@ in {
           useUserPackages = true;
           users.${user} = {
             imports = [./home.nix];
-            blenderHipSupport = false;
+            blenderHipSupport = true;
           };
         };
       }
