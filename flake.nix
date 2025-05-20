@@ -10,7 +10,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
     let
       user = "ms45";
       system = "x86_64-linux";
