@@ -21,10 +21,20 @@ in {
           default-title = "Untitled";
           filename = "{{id}}-{{slug title}}";
           extension = "md";
-          template = "default.md";
+          # template = "default.md";
           id-charset = "alphanum";
           id-length = 4;
           id-case = "lower";
+        };
+        group = {
+          daily = {
+            paths = ["journal"];
+            note = {
+              filename = "{{format-date now '%Y-%m-%d'}}";
+              extension = "md";
+              # template = "daily.md";
+            };
+          };
         };
       };
     };
