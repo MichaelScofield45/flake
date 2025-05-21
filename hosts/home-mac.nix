@@ -10,69 +10,17 @@
   osCfg = osConfig;
 in {
   imports = [
-    ../programs/blender.nix
-    ../programs/kitty.nix
     ../programs/ghostty.nix
+    ../programs/kitty.nix
     ../programs/fish.nix
     ../programs/nnn.nix
     ../programs/zk.nix
   ];
-  home.username = "ms45";
-  home.homeDirectory = "/home/ms45";
-  home.stateVersion = "22.11";
 
   programs.home-manager.enable = true;
-
-  home.packages = with pkgs; [
-    # Terminal related pkgs
-    (python311.withPackages (ps: with ps;[
-      numpy
-      ipython
-      matplotlib
-      pandas
-      pynvim
-      jupyter-client
-    ]))
-    bat
-    fd
-    ffmpeg
-    file
-    gdb
-    git
-    htop
-    libertine
-    jetbrains-mono
-    iosevka-bin
-    lazygit
-    less
-    ripgrep
-    tealdeer
-    trash-cli
-    luajit
-    luajitPackages.luarocks
-    unzip
-    stow
-    p7zip
-    gnumake
-    neovim
-    taskwarrior3
-    typst
-    yazi
-  ];
-
   programs.zoxide.enable = true;
   programs.fzf.enable = true;
   mine.nnn.enable = true;
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    PAGER = "less";
-  };
-
-  home.sessionPath = [
-    "$HOME/.local/bin"
-  ];
-
   programs.bash.enable = true;
   programs.btop = {
     enable = true;
@@ -81,38 +29,15 @@ in {
       vim_keys = true;
     };
   };
-
-
-  home.packages = with pkgs; [
-    # GUI apps
-    foliate
-    chromium
-    calibre
-    firefox-beta
-    inkscape
-    krita
-    lutris
-    pavucontrol
-    obs-studio
-    qbittorrent
-    qalculate-qt
-    rnote
-    vscodium
-    wineWowPackages.staging
-    wl-clipboard
-    xclip
-    xournalpp
-  ];
-
-  mine.kitty.enable = true;
   mine.ghostty.enable = true;
-  # mine.blender.enable = true;
-
+  programs.ghostty.package = null;
+  programs.ghostty.settings= {
+    window-decoration = true;
+    font-size = 22.0;
+  };
+  # mine.kitty.enable = true;
+  # programs.kitty.package = null;
   mine.zk.enable = true;
-
-  # services.syncthing.enable = true;
-  # fonts.fontconfig.enable = true;
-
   programs.mpv = {
     enable = true;
     config = {
@@ -120,4 +45,76 @@ in {
       vo = "gpu";
     };
   };
+
+  home = {
+    stateVersion = "22.11";
+    username = "ms45";
+    homeDirectory = "/Users/ms45";
+    packages = with pkgs; [
+      # # GUI apps
+      # foliate
+      # chromium
+      # calibre
+      # firefox-beta
+      # inkscape
+      # krita
+      # lutris
+      # pavucontrol
+      # obs-studio
+      # qbittorrent
+      # qalculate-qt
+      # rnote
+      # vscodium
+      # wineWowPackages.staging
+      # wl-clipboard
+      # xclip
+      # xournalpp
+
+      # Terminal related pkgs
+      (python311.withPackages (ps: with ps;[
+        numpy
+        ipython
+        matplotlib
+        pandas
+        pynvim
+        jupyter-client
+      ]))
+      bat
+      fd
+      ffmpeg
+      file
+      gdb
+      git
+      htop
+      libertine
+      jetbrains-mono
+      iosevka-bin
+      lazygit
+      less
+      ripgrep
+      tealdeer
+      trash-cli
+      luajit
+      luajitPackages.luarocks
+      unzip
+      stow
+      p7zip
+      gnumake
+      neovim
+      taskwarrior3
+      typst
+      yazi
+    ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      PAGER = "less";
+    };
+
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
+  };
+  # services.syncthing.enable = true;
+  # fonts.fontconfig.enable = true;
 }
