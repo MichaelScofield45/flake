@@ -30,6 +30,11 @@
       "ghostty"
       "kitty"
       "firefox@beta"
+      "gimp"
+      "obs"
+      "vscodium"
+      "inkscape"
+      "arduino-ide"
     ];
   };
 
