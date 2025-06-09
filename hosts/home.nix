@@ -30,10 +30,9 @@ in {
         (python311.withPackages (ps: with ps;[
           numpy
           ipython
+          ipykernel
           matplotlib
           pandas
-          pynvim
-          jupyter-client
         ]))
         bat
         fd
