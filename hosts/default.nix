@@ -28,7 +28,7 @@ in {
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${user} = {
-            imports = [./home.nix];
+            imports = [./desktop/home.nix];
             blenderHipSupport = true;
           };
         };
@@ -60,7 +60,7 @@ in {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${user} = {
-          imports = [./home.nix];
+          imports = [./server/home.nix];
         };
       }
     ];
