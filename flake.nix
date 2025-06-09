@@ -39,7 +39,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${user} = {
-                  imports = [./hosts/home-mac.nix];
+                  imports = [./hosts/MacBook/home.nix];
                 };
               }
           ];

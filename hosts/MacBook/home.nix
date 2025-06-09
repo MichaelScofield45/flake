@@ -10,11 +10,11 @@
   osCfg = osConfig;
 in {
   imports = [
-    ../programs/ghostty.nix
-    ../programs/kitty.nix
-    ../programs/fish.nix
-    ../programs/nnn.nix
-    ../programs/zk.nix
+    ../../programs/ghostty.nix
+    ../../programs/kitty.nix
+    ../../programs/fish.nix
+    ../../programs/nnn.nix
+    ../../programs/zk.nix
   ];
 
   programs.home-manager.enable = true;
