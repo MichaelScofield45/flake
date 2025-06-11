@@ -12,6 +12,10 @@
         name = "tide";
         src = pkgs.fishPlugins.tide.src;
       }
+      {
+        name = "z";
+        src = pkgs.fishPlugins.z.src;
+      }
     ];
     interactiveShellInit = ''
       set fish_greeting # Disable greeting

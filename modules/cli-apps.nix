@@ -53,7 +53,6 @@ in {
       yazi
     ];
 
-    programs.zoxide.enable = true;
     programs.fzf.enable = true;
     mine.nnn.enable = true;
     mine.zk.enable = true;
