@@ -35,6 +35,7 @@
       "vscodium"
       "inkscape"
       "arduino-ide"
+      "zoom"
     ];
   };
 
