@@ -22,6 +22,7 @@ in {
       (python311.withPackages (ps: with ps;[
         numpy
         ipython
+        scipy
         ipykernel
         matplotlib
         pandas
