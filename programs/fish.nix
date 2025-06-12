@@ -17,10 +17,25 @@
         src = pkgs.fishPlugins.z.src;
       }
     ];
+
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       fish_vi_key_bindings
     '';
+
+    shellAbbrs = {
+      lg = "lazygit";
+    };
+
+    binds = let
+      z-key = "\\;";
+    in {
+      ${z-key} = {
+        command = "__z_fzf ${z-key}";
+        mode = "insert";
+      };
+    };
+
     functions = {
       n = {
         wraps = "nnn";
@@ -55,6 +70,23 @@
           if test -e $NNN_TMPFILE
               source $NNN_TMPFILE
               rm $NNN_TMPFILE
+          end
+        '';
+      };
+
+      __z_fzf = {
+        description = "binding for quickly fuzzy finding and jumping between directories";
+        argumentNames = "key";
+        body = ''
+          set -l cmd (commandline)
+          if test "$cmd" = ""
+            set -l result (z -l | awk '{print $2}' | fzf)
+            if test -n "$result"
+              cd "$result"
+              commandline -f repaint
+            end
+          else
+            commandline --insert $key
           end
         '';
       };
