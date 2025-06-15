@@ -59,29 +59,22 @@
   ];
 
   services.samba = {
-    enable = true;
     openFirewall = true;
+    enable = true;
     settings = {
       global = {
         security = "user";
-        "server string" = "File Server";
-        "map to guest" = "bad user";
-        "name resolve order" = "bcast host";
-        # usershare allow guests = yes
+        "server string" = "Media Samba Share";
+        # "map to guest" = "bad user";
       };
       Media = {
         path = "/home/ms45/Media";
-        writeable = "yes";
         browseable = "yes";
-        "public" = "yes";
-        "read only" = "no";
         "guest ok" = "yes";
+        "read only" = "no";
         # "force user" = "nobody";
         # "force user" = "smbuser";
         # "force group" = "smbgroup";
-        "create mask" = "0664";
-        "directory mask" = "0775";
-        "force create mode" = "0664";
       };
     };
   };
