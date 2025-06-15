@@ -5,7 +5,6 @@
   ...
 }: {
   nix = {
-    # package = pkgs.nixFlakes;
     settings.experimental-features = ["nix-command" "flakes"];
   };
   imports = [
@@ -36,7 +35,7 @@
       enable32Bit = true;
   };
 
-  hardware.nvidia= {
+  hardware.nvidia = {
     open = false;
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -44,7 +43,10 @@
     nvidiaSettings = true;
   };
 
-  services.jackett.enable = true;
+  services.jackett = {
+    enable = true;
+    openFirewall = true;
+  };
 
   networking.firewall.allowedTCPPorts = [
     8096
@@ -56,28 +58,31 @@
     8081
   ];
 
-  services.samba.enable = true;
-  services.samba.settings = {
-    global = {
-      security = "user";
-      "server string" = "File Server";
-      "map to guest" = "bad user";
-      "name resolve order" = "bcast host";
-      # usershare allow guests = yes
-    };
-    Media = {
-      path = "/home/ms45/Media";
-      writeable = "yes";
-      browseable = "yes";
-      "public" = "yes";
-      "read only" = "no";
-      "guest ok" = "yes";
-      # "force user" = "nobody";
-      # "force user" = "smbuser";
-      # "force group" = "smbgroup";
-      "create mask" = "0664";
-      "directory mask" = "0775";
-      "force create mode" = "0664";
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      global = {
+        security = "user";
+        "server string" = "File Server";
+        "map to guest" = "bad user";
+        "name resolve order" = "bcast host";
+        # usershare allow guests = yes
+      };
+      Media = {
+        path = "/home/ms45/Media";
+        writeable = "yes";
+        browseable = "yes";
+        "public" = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        # "force user" = "nobody";
+        # "force user" = "smbuser";
+        # "force group" = "smbgroup";
+        "create mask" = "0664";
+        "directory mask" = "0775";
+        "force create mode" = "0664";
+      };
     };
   };
 
@@ -86,6 +91,7 @@
   environment.systemPackages = with pkgs; [
     qbittorrent-nox
   ];
+
   systemd.user.services.qbittorrent-nox-startup = {
     enable = true;
     description = "qbittorrent-nox as a daemon when server is started";
