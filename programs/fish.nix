@@ -12,10 +12,6 @@
         name = "tide";
         src = pkgs.fishPlugins.tide.src;
       }
-      {
-        name = "z";
-        src = pkgs.fishPlugins.z.src;
-      }
     ];
 
     interactiveShellInit = ''
@@ -80,11 +76,11 @@
         body = ''
           set -l cmd (commandline)
           if test "$cmd" = ""
-            set -l result (z -l | awk '{print $2}' | fzf)
+            set -l result (zoxide query -i)
             if test -n "$result"
               cd "$result"
-              commandline -f repaint
             end
+            commandline -f repaint
           else
             commandline --insert $key
           end

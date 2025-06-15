@@ -55,6 +55,7 @@ in {
     ];
 
     programs.fzf.enable = true;
+    programs.zoxide.enable = true;
     mine.nnn.enable = true;
     mine.zk.enable = true;
 
