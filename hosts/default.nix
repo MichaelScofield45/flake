@@ -9,10 +9,7 @@
   pkgs = import inputs.nixpkgs {
     inherit system;
     overlays = [inputs.nvim_overlay.overlays.default];
-    config = {
-      allowUnfree = true;
-    };
-
+    config.allowUnfree = true;
   };
   specialArgs = {
     inherit user inputs;
