@@ -25,7 +25,7 @@
         mac-system = "x86_64-darwin";
         pkgs = import nixpkgs {
           system = mac-system;
-          config.allowBroken = true;
+          config.allowUnfree = true;
         };
       in {
         Franciscos-MacBook-Pro = nix-darwin.lib.darwinSystem {
