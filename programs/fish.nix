@@ -21,14 +21,16 @@
 
     shellAbbrs = {
       lg = "lazygit";
+      t = "task";
+      nv = "nvim";
     };
 
     binds = let
       z-key = "\\;";
     in {
       ${z-key} = {
-        command = "__z_fzf ${z-key}";
         mode = "insert";
+        command = "__z_fzf ${z-key}";
       };
     };
 
