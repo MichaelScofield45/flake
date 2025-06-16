@@ -28,6 +28,7 @@ in {
         pandas
       ]))
       bat
+      devenv
       fd
       ffmpeg
       file
@@ -58,6 +59,11 @@ in {
     programs.zoxide.enable = true;
     mine.nnn.enable = true;
     mine.zk.enable = true;
+
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
     home.sessionVariables = {
       EDITOR = "nvim";
