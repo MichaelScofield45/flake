@@ -22,4 +22,8 @@ in {
 
   mine.cli-apps.enable = true;
   mine.gui-apps.enable = true;
+
+  home.packages = [
+    pkgs.azahar
+  ];
 }
