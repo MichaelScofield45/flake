@@ -55,7 +55,10 @@ in {
       yazi
     ];
 
-    programs.fzf.enable = true;
+    programs.fzf = {
+      enable = true;
+      defaultCommand = "${pkgs.fd}/bin/fd --type f";
+    };
     programs.zoxide.enable = true;
     mine.nnn.enable = true;
     mine.zk.enable = true;
