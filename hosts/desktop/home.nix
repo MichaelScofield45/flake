@@ -14,6 +14,8 @@ in {
     ../../modules/gui-apps.nix
   ];
 
+	mine.ghostty.blur = false;
+
   home.username = "ms45";
   home.homeDirectory = "/home/ms45";
   home.stateVersion = "22.11";
