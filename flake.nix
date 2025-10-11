@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim_overlay.url = "github:nix-community/neovim-nightly-overlay";
+    copyparty.url = "github:9001/copyparty";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
