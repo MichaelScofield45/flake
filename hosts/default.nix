@@ -30,6 +30,12 @@ in {
           };
         };
       }
+		  inputs.copyparty.nixosModules.default
+			({ pkgs, ... }: {
+			  nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
+			  environment.systemPackages = [ pkgs.copyparty ];
+			  # services.copyparty.enable = true;
+			})
     ];
   };
 
@@ -62,7 +68,7 @@ in {
       }
 		  inputs.copyparty.nixosModules.default
 			({ pkgs, ... }: {
-			  nixpkgs.overlays = [ copyparty.overlays.default ];
+			  nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
 			  environment.systemPackages = [ pkgs.copyparty ];
 			  services.copyparty.enable = true;
 			})
