@@ -22,6 +22,10 @@
     shellAbbrs = {
       lg = "lazygit";
       t = "task";
+      tad = {
+        setCursor = true;
+        expansion = "task add '%'";
+      };
       nv = "nvim";
     };
 
