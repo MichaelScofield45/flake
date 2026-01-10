@@ -21,7 +21,7 @@ in {
       settings = {
         font-family = "Iosevka Term";
         font-size = 15.0;
-        theme = "flexoki-dark";
+        theme = "Moonfly";
         window-padding-x = 8;
         window-decoration = false;
         background-blur = lib.mkIf cfg.mine.ghostty.blur true;
