@@ -20,11 +20,7 @@ in {
 
   config = lib.mkIf cfg.mine.blender.enable {
     home.packages = with pkgs; [
-      (
-        if config.blenderHipSupport
-        then blender-hip
-        else blender
-      )
+      blender
     ];
   };
 }
