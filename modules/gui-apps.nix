@@ -31,7 +31,7 @@ in {
       qalculate-qt
       rnote
       vscodium
-      wineWowPackages.staging
+      wineWow64Packages.staging
       wl-clipboard
       xclip
       xournalpp
