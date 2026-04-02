@@ -23,14 +23,14 @@
   networking.hostName = "nixos-laptop"; # Define your hostname.
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Hardware Acceleration
-  hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-  };
+  # hardware.graphics = {
+  #     enable = true;
+  #     enable32Bit = true;
+  # };
 
   hardware.bluetooth.enable = true;
 
@@ -40,6 +40,26 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [brlaser];
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+  environment.systemPackages = with pkgs; [
+    qbittorrent-nox
+  ];
+
+  systemd.user.services.qbittorrent-nox-startup = {
+    enable = true;
+    description = "qbittorrent-nox as a daemon when server is started";
+    after = [ "network-online.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+      Restart = "always";
+    };
+  };
 
   services.pipewire.wireplumber.extraConfig."99-disable-suspend" = {
     "monitor.alsa.rules" = [
@@ -59,10 +79,10 @@
   };
 
   # Enable steam
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
 
   # Enable kdeconnect
-  programs.kdeconnect.enable = true;
+  # programs.kdeconnect.enable = true;
 
   users.users.${user} = {
     isNormalUser = true;

@@ -23,7 +23,12 @@
     fsType = "vfat";
   };
 
-  swapDevices = [ 
+  fileSystems."/media" = {
+    device = "/home/${user}/Media";
+    options = [ "bind" ];
+  };
+
+  swapDevices = [
     {
       device = "/.swapfile";
     }

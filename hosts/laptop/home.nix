@@ -11,7 +11,6 @@
 in {
   imports = [
     ../../modules/cli-apps.nix
-    ../../modules/gui-apps.nix
   ];
 
   home.username = "ms45";
