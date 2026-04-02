@@ -11,6 +11,7 @@
 in {
   imports = [
     ../../modules/cli-apps.nix
+    ../../modules/gui-apps.nix
   ];
 
   home.username = "ms45";
@@ -20,5 +21,4 @@ in {
   programs.home-manager.enable = true;
 
   mine.cli-apps.enable = true;
-  mine.gui-apps.enable = true;
 }
