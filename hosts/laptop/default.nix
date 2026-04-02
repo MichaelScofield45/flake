@@ -61,6 +61,10 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [
+    8081
+  ];
+
   services.pipewire.wireplumber.extraConfig."99-disable-suspend" = {
     "monitor.alsa.rules" = [
       {
