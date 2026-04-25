@@ -19,7 +19,7 @@ in {
 
   config = {
     home.packages = with pkgs; [
-      (python311.withPackages (ps: with ps;[
+      (python3.withPackages (ps: with ps;[
         numpy
         ipython
         scipy
