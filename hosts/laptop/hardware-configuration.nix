@@ -26,6 +26,7 @@
   fileSystems."/media" = {
     device = "/home/${user}/Media";
     options = [ "bind" ];
+    fsType = "none";
   };
 
   swapDevices = [
