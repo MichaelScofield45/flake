@@ -16,7 +16,8 @@ in {
   ];
 
   options.mine.gui-apps.enable = lib.mkEnableOption "enable common gui tools";
-  config = {
+
+  config = lib.mkIf cfg.mine.gui-apps.enable {
     home.packages = with pkgs; [
       foliate
       chromium

@@ -17,7 +17,7 @@ in {
 
   options.mine.cli-apps.enable = lib.mkEnableOption "enable common cli tools";
 
-  config = {
+  config = lib.mkIf cfg.mine.cli-apps.enable {
     home.packages = with pkgs; [
       (python3.withPackages (ps: with ps;[
         numpy
