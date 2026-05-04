@@ -10,7 +10,6 @@
   osCfg = osConfig;
 in {
   imports = [
-    ../programs/zk.nix
     ../programs/fish.nix
     ../programs/nnn.nix
   ];
@@ -50,9 +49,8 @@ in {
       p7zip
       gnumake
       neovim
-      taskwarrior3
+      kakoune
       typst
-      yazi
     ];
 
     programs.fzf = {
@@ -61,7 +59,6 @@ in {
     };
     programs.zoxide.enable = true;
     mine.nnn.enable = true;
-    mine.zk.enable = true;
 
     programs.direnv = {
       enable = true;
