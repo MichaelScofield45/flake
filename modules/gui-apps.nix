@@ -25,7 +25,6 @@ in {
       firefox-beta
       inkscape
       krita
-      lutris
       pavucontrol
       obs-studio
       qbittorrent

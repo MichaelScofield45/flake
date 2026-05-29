@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -11,7 +12,7 @@
     copyparty.url = "github:9001/copyparty";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, ... }:
     let
       user = "ms45";
       system = "x86_64-linux";

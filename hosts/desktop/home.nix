@@ -2,6 +2,7 @@
   config,
   osConfig,
   pkgs,
+  pkgs-stable,
   user,
   lib,
   ...
@@ -24,6 +25,6 @@ in {
   mine.gui-apps.enable = true;
 
   home.packages = [
-    # pkgs.azahar
+    pkgs-stable.lutris
   ];
 }

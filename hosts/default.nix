@@ -1,6 +1,8 @@
 {
   inputs,
   lib,
+	# nixpkgs,
+	# nixpkgs-stable-stable,
   system,
   user,
   home-manager,
@@ -11,12 +13,17 @@
     overlays = [inputs.nvim_overlay.overlays.default];
     config.allowUnfree = true;
   };
+  pkgs-stable = import inputs.nixpkgs-stable {
+    inherit system;
+    overlays = [inputs.nvim_overlay.overlays.default];
+    config.allowUnfree = true;
+  };
   specialArgs = {
-    inherit user inputs;
+    inherit user inputs pkgs-stable;
   };
 in {
   desktop = lib.nixosSystem {
-    inherit system pkgs specialArgs;
+		inherit system pkgs specialArgs;
     modules = [
       ./desktop
       home-manager.nixosModules.home-manager
@@ -28,6 +35,9 @@ in {
             imports = [./desktop/home.nix];
             blenderHipSupport = true;
           };
+					extraSpecialArgs = {
+						inherit pkgs-stable;
+					};
         };
       }
 		  inputs.copyparty.nixosModules.default
