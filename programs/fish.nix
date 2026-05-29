@@ -16,7 +16,7 @@
 
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      fish_vi_key_bindings
+      fish_hybrid_key_bindings
     '';
 
     shellAbbrs = {
