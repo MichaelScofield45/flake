@@ -24,6 +24,8 @@ in {
   mine.cli-apps.enable = true;
   mine.gui-apps.enable = true;
 
+  services.jellyfin-mpv-shim.enable = true;
+
   home.packages = [
     pkgs-stable.lutris
   ];
