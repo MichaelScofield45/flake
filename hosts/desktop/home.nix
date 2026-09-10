@@ -28,5 +28,7 @@ in {
 
   home.packages = [
     pkgs-stable.lutris
+		pkgs.kdePackages.oxygen
+		pkgs.kdePackages.oxygen-icons
   ];
 }
