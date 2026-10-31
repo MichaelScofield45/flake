@@ -19,16 +19,17 @@ in {
 
   config = lib.mkIf cfg.mine.gui-apps.enable {
     home.packages = with pkgs; [
-      foliate
-      chromium
+			emacs
       calibre
+      chromium
       firefox-beta
+      foliate
       inkscape
       krita
-      pavucontrol
       obs-studio
-      qbittorrent
+      pavucontrol
       qalculate-qt
+      qbittorrent
       rnote
       vscodium
       wineWow64Packages.staging
