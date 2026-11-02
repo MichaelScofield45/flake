@@ -36,7 +36,6 @@ in {
       htop
       libertine
       jetbrains-mono
-      iosevka-bin
       lazygit
       less
       ripgrep

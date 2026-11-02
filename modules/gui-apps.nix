@@ -26,6 +26,10 @@ in {
       foliate
       inkscape
       krita
+      iosevka-bin
+      fira-code
+      ioskeley-mono.term
+      ioskeley-mono.standard
       obs-studio
       pavucontrol
       qalculate-qt
